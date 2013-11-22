@@ -3,21 +3,19 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.group</groupId>
 	<artifactId>OpenSourceStudy</artifactId>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>OpenSourceStudy</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
-	
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
-
+	
 	<build>
 		<finalName>OpenSourceStudy</finalName>
 	</build>
