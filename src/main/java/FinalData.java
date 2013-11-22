@@ -6,6 +6,7 @@ class Value {
   public Value(int i) { this.i = i; }
 }
 
+
 public class FinalData {
   private static Random rand = new Random(47);
   private String id;
