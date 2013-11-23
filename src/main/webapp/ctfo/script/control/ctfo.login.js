@@ -69,7 +69,7 @@
         // } else if(!corpCode) {
         //     errorTip.text($(container).find('input[name=corpCode]').attr('title'));
         // }
-
+        debugger;
         $.ajax({
           url: 'portal/login.action',
           type: 'POST',
@@ -95,6 +95,7 @@
           error: function(xhr, textStatus, errorThrown) {
                 refreshImgCode();
                 errorTip.text('登录出错');
+                window.location.replace("index.html");//TODO 有后台时需要干掉 
           }
         });
     };

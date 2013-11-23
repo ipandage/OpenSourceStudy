@@ -425,11 +425,11 @@ CTFO.Model.FrameManager = (function(){
             init: function(options) {
                 var that = this;
                 p = $.extend({}, p || {}, options || {});
-                initUtilFuns();
+                //initUtilFuns(); TODO
                 initUtilCache();
-                initLoginInfo(function() {
+                //initLoginInfo(function() { TODO
                     initMenu();
-                });
+                //});
                 commitLog();
                 resize();
                 $(window).resize(function() {
