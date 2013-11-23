@@ -8,6 +8,9 @@ class Value {
 
 
 public class FinalData {
+	
+  private String gao = "test";
+	
   private static Random rand = new Random(47);
   private String id;
   public FinalData(String id) { this.id = id; }
