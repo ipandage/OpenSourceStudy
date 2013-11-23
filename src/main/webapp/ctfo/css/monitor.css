@@ -1,0 +1,7 @@
+.org_tree {
+  overflow: auto;
+}
+
+.org_tree ul {
+  width: 500px;
+}
