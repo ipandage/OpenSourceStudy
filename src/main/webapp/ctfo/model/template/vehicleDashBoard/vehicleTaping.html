@@ -1,0 +1,47 @@
+<!--切换（监听）-->
+<div class=" pt10 h25 lh25 lineS69c_b pl10 pr10 tc overh tapingModelTab">
+    <span class="fl hand w80 tit1 h25 radius3-t lineS69c_l lineS69c_r lineS69c_t cFFF">监听</span>
+    <span class="fl hand w80 tit2 h25 radius3-t lineS_l lineS_r lineS_t">录音</span>
+</div>
+
+<div class=" lineD radius3 bcFFF p5 mb10">
+    <div class="tapingModelContent">
+        <p class="h30 lh25">
+            <span class="fl w80 tc">监听方式：</span>
+            <span class="fl w100 checkbox">
+                <input class="w20" type="radio" name="callType" value="1" />
+                单车监听
+            </span>
+            <span class="fl w100 checkbox">
+                <input class="w20" type="radio" name="callType" value="2"/>
+                双项通话
+            </span>
+        </p>
+        <p class="h30 lh25">
+            <span class="fl w80 tc">回拨手机：</span>
+            <input class="w100" type="text" name="callbackPhone" />
+        </p>
+        <div class=" h25 cb pl10">
+            <span class="btn2 cFFF fr mr10" name="startCallButton">开始监听</span>
+            <div class="commandSendStatus"></div>
+        </div>
+    </div>
+    <div class="tapingModelContent none">
+        <p class="h30 lh25">
+            <span class="fl w80 tc">录音时长：</span>
+            <span class="fl w100">
+                <select name="tapingTime">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                </select>
+            </span>
+        </p>
+        <div class=" h25 cb pl10">
+            <span class="btn2 cFFF fr mr10" name="stopTapingButton">停止录音</span>
+            <span class="btn3 cFFF fr mr10" name="startTapingButton">开始录音</span>
+            <div class="tapingTimeCountdown"></div>
+            <div class="commandSendedStatus"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<!-- 实时监控 > 实时视图 -->
+
+    <div class="tit2 h25  lh25  lineS_b overh">
+        <h4 class=" pl10 pr5 lineS_r w80 fl">
+            <span class="ico138"></span>
+            实时视图
+        </h4>
+        <div class="pl10 h25 fl">
+            <div class="w120 fl tr">
+                车辆状态：
+                <select class="w60" name="vehicleStatus">
+                    <option value="">全部</option>
+                    <option value="1">在线</option>
+                    <option value="0">离线</option>
+                    <option value="alarm">报警</option>
+                    <option value="noLoglat">未定位</option>
+                    <option value="stop">停止</option>
+                </select>
+            </div>
+            <div class=" w20 pl20 fl">
+                <span class="hand ico111 searchActiveVehicleList" title="查询">查询</span>
+            </div>
+            <div class=" w20 pl20 fl">
+                <span class="hand ico150 clearSelectedVehicles" title="清空">清空</span>
+            </div>
+            <div class=" w20 pl20 fl">
+                <span class="hand ico116 jumpToVehicleStatus" title="设备状态">设备状态</span>
+            </div>
+        </div>
+        <div class=" w20 fr">
+            <span class="close monitorClose" title="关闭">关闭</span>
+        </div>
+    </div>
+    <!--数据内容-->
+    <div class=" overa">
+        <div class="activeMonitorGrid"></div>
+    </div>

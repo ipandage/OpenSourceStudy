@@ -1,0 +1,67 @@
+<!--调度信息查询 attemperInfo-->
+<!--sidebox-->
+<div class="sidebox leftTreeContainer"></div>
+<!--main-->
+<div class="main ml_240">
+	<!--当前位置-->
+	<div class="h25 lh25 lineS_b tit2 overh pageLocation">
+		<span class=" ico146"></span> <font>当前位置：</font> <font>车辆监控</font> -> <font>调度信息查询</font>
+	</div>
+	<div class="ml3 mr3">
+		<!--功能模块-->
+		<div class=" pt5 h30 lh30 pl10 pr10 tc overh attemperInfoTab">
+			<span class="fl hand w100 tit1 h30 radius3-t lineS69c_l lineS69c_r lineS69c_t cFFF isTab" statType="1">平台下发</span>
+			<span class="fl hand w100 tit2 h30 radius3-t lineS_l lineS_r lineS_t isTab" statType="2">自主上报</span>
+		</div>
+		<!--切换内容-->
+		<div class="">
+			<!--切换(平台下发)-->
+			<div class=" attemperInfoContent">
+				<!--查询条件-->
+				<div class=" lineS69c h30 p5 tit5 overh attemperInfoTerm">
+					<form name="attemperInForm">
+						<input type="hidden" name="statType" value="1" />
+						<input type="hidden" name="requestParam.equal.dmsgSrtimeOrderBy" value="desc" />
+						<input type="hidden" name="requestParam.equal.tvdIssuedVids" />
+						<input type="hidden" name="requestParam.equal.tvdIssuedTeamIds"/>
+						<div class="h30 lh30 fl w180">
+							<input type="text" name="requestParam.equal.dmsgSrtimeStart" class="fl" />
+						</div>
+						<div class="h30 lh30 fl w180">
+							<input type="text" name="requestParam.equal.dmsgSrtimeEnd" class="fl" />
+						</div>
+
+						<span class="searchGrid btn1 cFFF fl ml20">查 询</span>
+					</form>
+					<span class="btn6 fr ml20 exportGrid">导 出</span>
+				</div>
+				<!--数据显示-->
+				<div class=" lineS mt3 bcFFF attemperInfoBox" style="">
+					<div class="gridContainer"></div>
+				</div>
+			</div>
+			<!--切换（自主上报）-->
+            <div class="none attemperInfoContent">
+                <div class=" lineS69c h30 p5 tit5 overh attemperInfoTerm">
+                    <form name="attemperInForm">
+						<input type="hidden" name="statType" value="2" />
+						<input type="hidden" name="requestParam.equal.tvdReportVids" />
+						<input type="hidden" name="requestParam.equal.tvdReportTeamIds" />
+						<div class="h30 lh30 fl w180">
+							<input type="text" name="requestParam.equal.umsgSrtimeStart" class="fl" />
+						</div>
+						<div class="h30 lh30 fl w180">
+							<input type="text" name="requestParam.equal.umsgSrtimeEnd" class="fl" />
+						</div>
+
+						<span class="searchGrid btn1 cFFF fl ml20">查 询</span>
+					</form>
+					<span class="btn6 fr ml20 exportGrid">导 出</span>
+                </div>
+                <div class=" lineS mt3 bcFFF attemperInfoBox" >
+                    <div class="gridContainer"></div>
+                </div>
+            </div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,36 @@
+<!--切换（跟踪）-->
+<div class=" lineD radius3 bcFFF p5 mb10 vehicleTrackingForm">
+    <p class="h30 lh25">
+        <span class="fl w100 tc">上报间隔（秒）：</span>
+        <span class="fl w50">
+            <input class="w30" type="text" name="reportGap" title="请填入2-60的整数" />
+        </span>
+        <span class="fl w150">
+            2
+            <input class=" w100" type="range" name="reportGapSlider" min="1" max="60" value="60" step="1">60</span>
+    </p>
+    <p class="h30 lh25">
+        <span class="fl w100 tc">上报次数（秒）：</span>
+        <span class="fl w50">
+            <input class="w30" type="text" name="reportTimes" title="请填入1-100的整数" />
+        </span>
+        <span class="fl w150">
+            1
+            <input class=" w100" type="range" name="reportTimesSlider" min="1" max="60" value="60" step="1">100</span>
+    </p>
+    <p class="h30 lh25">
+        <span class="fl w100 tc">刷新间隔（秒）：</span>
+        <span class="fl w50">
+            <input class="w30" type="text" name="refreshGap" title="请填入2-60的整数" />
+        </span>
+        <span class="fl w150">
+            2
+            <input class=" w100" type="range" name="refreshGapSlider" min="1" max="60" value="60" step="1">60</span>
+    </p>
+    <div class=" h25 cb pl10">
+        <div class="fl mr10 commandSendStatus"></div>
+        <span class="btn2 cFFF fr mr10 trackingButton">重点监控</span>
+    </div>
+</div>
+<!--地图调用-->
+<div class=" lineD p5 h200 overh bcFFF radius3"><div class="trackingMap" id="trackingMap">地图调用：w=100% h=200px</div></div>

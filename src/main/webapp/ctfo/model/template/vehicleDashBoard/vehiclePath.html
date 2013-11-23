@@ -1,0 +1,55 @@
+<div class="h30 lh30 pathForm">
+    <p class="fl w">
+        <div class="fl"><input class=" w100" type="text" name="pathStartTime" value="2012-12-12" /></div>
+        <div class="fl"><input class=" w100" type="text" name="pathEndTime" value="2012-10-45" /></div>
+        <select class="fl w70" name="preDays">
+            <option value="1">前一天</option>
+            <option value="2">前两天</option>
+            <option value="3">前三天</option>
+        </select>
+    </p>
+    <span class="btn1 cFFF fr queryPathButton">查询</span>
+</div>
+
+<div class=" lineD p5 h280 overh bcFFF radius3 vehiclePathMap" id="vehiclePathMap">地图调用：w=100% h=280px</div>
+<!--媒体播放-->
+<div class=" mt10 pathPlayer">
+    <div class="w50b fl h40 mr10">
+        <div class="playerButton"></div>
+        <div class="playerSlider"></div>
+        <!-- <audio class="w " controls="controls">
+            <source src="/i/song.ogg" type="audio/ogg">
+            <source src="/i/song.mp3" type="audio/mpeg">不支持HTML5</audio> -->
+    </div>
+    <div class=" h40 lh16 pathStatistics">
+        <p>轨迹点 : <span class="pathPointsCount">0</span>个</p>
+        <p>终端上报里程数: <span class="pathMileCount1">0</span>公里</p>
+        <p>平台计算里程数: <span class="pathMileCount2">0</span>公里</p>
+    </div>
+</div>
+<!--信息数据-->
+<div class=" cb p5 mt5 radius3 bcFFC lineD pathInfo">
+    <ul class=" lh25 ">
+        <li class=" h25 overh fl w50b">
+            <span class=" tr c060">时间：</span>
+            <span class=" tl pathInfoColumn">--</span>
+        </li>
+        <li class=" h25 overh fl w50b">
+            <span class=" tr c060">车速：</span>
+            <span class=" tl pathInfoColumn">--</span>
+        </li>
+        <li class=" h25 overh fl w50b">
+            <span class=" tr c060">方向：</span>
+            <span class=" tl pathInfoColumn">--</span>
+        </li>
+        <li class=" h25 overh fl w50b">
+            <span class=" tr c060">转速：</span>
+            <span class=" tl pathInfoColumn">--</span>
+        </li>
+        <li class=" h25 overh fl w50b">
+            <span class=" tr c060">瞬时油耗：</span>
+            <span class=" tl pathInfoColumn">--</span>
+        </li>
+    </ul>
+    <div class="cb"></div>
+</div>
