@@ -1,0 +1,131 @@
+<!--照片管理 mediaInfo-->
+<link rel="stylesheet" type="text/css" href="css/photo.css"/>
+<!--sidebox-->
+    <div class="sidebox leftTreeContainer">
+
+    </div>
+<!--main-->	
+    <div class="main ml_240">
+    <!--当前位置-->
+        <div class="h25 lh25 lineS_b tit2 overh pageLocation">
+            <span class=" ico146"></span>
+            <font>当前位置：</font>
+            <font>车辆监控</font> -> 
+            <font>照片管理</font>
+        </div>
+        <div class="ml3 mr3 mediaInfoBox">
+        	    <!--功能模块-->
+                <div class=" pt5 h30 lh30 pl10 pr10 tc overh mediaInfoTab">
+                      <span class="fl hand w100 tit1 h30 radius3-t lineS69c_l lineS69c_r lineS69c_t cFFF isTab">本地多媒体</span>
+                      <span class="fl hand w100 tit2 h30 radius3-t lineS_l lineS_r lineS_t isTab">超员判断</span>
+                </div> 
+            	<!--切换(本地多媒体)-->            
+                <div class="mediaInfoContent">
+                    <!--查询条件-->
+                    <div class=" lineS69c h30 p5 tit5 overh mediaInfoTerm">
+                        <form name="mediaInfoForm">
+	                        <div class="h30 lh30 fl w180">
+	                           	 媒体类型：
+	                            <select name="requestParam.equal.mediaType">
+	                            	<option value="">全部</option>
+									<option value="0">图片</option>
+									<option value="1">音频</option>
+	                            </select>
+	                        </div>
+	                        <div class="h30 lh30 fl w180">
+	                                                                                    是否超载：
+	                            <select name="requestParam.equal.isOverload">
+	                            	<option value="">请选择</option>
+									<option value="1">是</option>
+									<option value="0">否</option>
+	                            </select>
+	                        </div>
+	                        <div class="h30 lh30 fl w180">
+	                                                                                    触发方式:
+	                            <select name="requestParam.equal.eventType">
+									<option value="">全部</option>
+									<option value="0">平台下发指令</option>
+									<option value="1">定时拍照</option>
+									<option value="2">抢劫报警触发</option>
+									<option value="3">碰撞侧翻触发</option>
+									<option value="4">开门触发</option>
+									<option value="5">关门触发</option>
+									<option value="6">车门由开变关</option>
+									<option value="7">定距拍照</option>
+									<option value="8">驾驶员登录触发</option>
+								</select>
+	                        </div>
+	                        <div class="h30 lh30 fl w80">
+		                                                                         开始时间:
+		                     </div>
+		                     <div class="h30 lh30 fl w180">
+		                         <input type="text" name="requestParam.equal.startTime"/>
+		                     </div>
+		                     <div class="h30 lh30 fl w80">
+								结束时间:
+		                     </div>
+		                     <div class="h30 lh30 fl w180">
+		                        <input type="text" name="requestParam.equal.endTime"/>
+		                     </div>
+	                        <span class="photoListSearch btn1 cFFF fl ml20">查询</span>
+                        </form>
+                    </div>
+                    <!--数据显示-->
+                    <div class=" lineS mt3 bcFFF mediaInfoList">
+                        <div class=" h25 lh25 bcFFF tit3 p5 overh  photoListTerm">
+                        	<div class="checkAll checkbox pl10 fl w100 "><input class="w20" type="checkbox" />全选</div>
+                            <span class="delMediaInfo btn5 fl ">删 除</span>
+                            <span class="btn6 fl ml10">导 出</span>
+                        </div>
+                        <div class="overa pr photoListBox">
+                        	<div class=" p10">
+                            	<ul class="jsPhotoList">
+                                </ul>
+                            </div>
+                        </div>                                                
+                    	<div class="pagination">
+                    		<a href="javascript:void(0)" class="firstPage">第0页</a>
+                    	</div>
+                    </div>
+               </div>
+               <!--切换（超员判断）-->
+               <div class="none mediaInfoContent">
+                	<!--查询条件-->
+                    <div class=" lineS69c h30 p5 tit5 overh mediaInfoTerm">
+                        <form name="mediaInfoForm">
+                            <input type="hidden" name="requestParam.equal.mediaType"  value="0"/>
+						    <input type="hidden" name="requestParam.equal.isOverload"  value="1"/>
+	                        <div class="h30 lh30 fl w80">
+		                                                                         开始时间:
+		                     </div>
+		                     <div class="h30 lh30 fl w180">
+		                          <input type="text" name="requestParam.equal.startTime"/>
+		                     </div>
+		                     <div class="h30 lh30 fl w80">
+								结束时间:
+		                     </div>
+		                     <div class="h30 lh30 fl w180">
+		                        <input type="text" name="requestParam.equal.endTime"/>
+		                     </div>
+	                        <span class="photoListSearch btn1 cFFF fl ml20">查询</span>
+                        </form>
+                    </div>
+                    <!--数据显示-->
+                    <div class=" lineS mt3 bcFFF mediaInfoList">
+                        <div class=" h25 lh25 bcFFF tit3 p5 overh  photoListTerm">
+                        	<div class="checkbox pl10 fl w100 checkAll"><input class="w20" type="checkbox" />全选</div>
+                            <span class="btn4 fl overManPhoto">确定</span>
+                        </div>
+                        <div class="overa pr photoListBox">
+                        	<div class=" p10">
+                            	<ul class="jsPhotoList">
+                                </ul>
+                            </div>
+                        </div>                                                
+                    	<div class="pagination">
+                    		<a href="javascript:void(0)" class="firstPage">第0页</a>
+                    	</div>
+                    </div>
+                </div>
+        </div>
+    </div>

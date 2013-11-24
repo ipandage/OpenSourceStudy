@@ -1,0 +1,52 @@
+<form name='modifyPhotoConfForm'>
+	<div class="w500 mauto bcFFF windowBox">
+		<div class="p10 h200 overa">
+			<div class="lh25 p10">
+				<div class="passwordModify lineD_b">
+	                  <table name="photoSetTab" align="center" cellspacing="3" cellpadding="3">
+				            <tr>
+				              <td  colspan="3">
+				              	<input type="checkbox" name="isTiming"  />定时拍照间隔：
+				              	<input name="timeInterval" type="text"  size="3"  value="0" disabled="true"/>&nbsp;分钟
+				              </td>
+				              <td>&nbsp;</td>
+				            </tr>
+				            <tr>
+				              <td colspan="3">
+				              	<input type="checkbox" name="isDistance"  />定距拍照间隔：
+				              	<input name="distanceInterval" type="text" size="3"  value="0" disabled="true"/>&nbsp;公里
+				              </td>
+				              <td>&nbsp;</td>
+				            </tr>
+				            <tr>
+				            	<td height="30">
+				            		起始时间:
+				                </td>
+				                <td><input type="text" name="photoSetSdate"/></td>
+				                <td height="30">
+				                	结束时间:
+				                </td>
+				                <td><input type="text" name="photoSetEdate"/></td>
+				            </tr>
+				      </table>
+	            </div>
+			</div>
+		 </div>
+	     <div class=" bcBlue lh25 pr10 pl10 pt10 lineS69c_t lineS69c_b">
+			  <div  class="photoSetAdd fr btn4"> 继续添加</div>
+	          <div class=" cb bcBlue h30 lh25 tc">
+	               <input type="checkbox" name="isDoorPhoto" value="" /><font class="mr20">启用开关门拍照</font>
+	               <input type="checkbox" name="isAlarmPhoto" value="" />启用进出区域报警拍照
+	          </div>
+	          <div class=" cb bcBlue h30 lh25 tc">
+	          	   <label name="triggerPhotosResult" style="float: left;width:400px;padding-left: 100px"></label>
+	          </div>
+	     </div>
+		 <div class="formButtonArea bcBlue h30 lh25">
+			   <div class="pt3 pl10 pr10">
+					<div class="triggerPhotosCannel fr btn4 ml10">取消</div>
+					<div class="triggerPhotosSave fr btn4 ml10">确定</div>
+			   </div>
+		 </div>
+	</div>
+</form>

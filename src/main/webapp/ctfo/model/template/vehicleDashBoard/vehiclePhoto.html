@@ -1,0 +1,61 @@
+<!--切换（拍照）-->
+<!--相机功能-->
+<div class=" lineD radius3 bcFFF p5 photoForm">
+    <p class="h30 lh25">
+        <span class="fl w80 tc">清晰度：</span>
+        <span class="fl w70 checkbox">
+            <input class="w20" type="radio" name="photoSharpness"/>
+            高清
+        </span>
+        <span class="fl w70 checkbox">
+            <input class="w20" type="radio" name="photoSharpness"/>
+            清晰
+        </span>
+        <span class="fl w70 checkbox">
+            <input class="w20" type="radio" name="photoSharpness" checked />
+            一般
+        </span>
+    </p>
+    <p class="h30 lh25">
+        <span class="fl w80 tc">摄像头：</span>
+        <span class="fl w70 checkbox">
+            <input class="w20" type="checkbox" name="cameraPosition" />
+            1路
+        </span>
+        <span class="fl w70 checkbox">
+            <input class="w20" type="checkbox" name="cameraPosition" checked />
+            2路
+        </span>
+        <span class="fl w70 checkbox">
+            <input class="w20" type="checkbox" name="cameraPosition" />
+            3路
+        </span>
+        <span class="fl w70 checkbox">
+            <input class="w20" type="checkbox" name="cameraPosition" />
+            4路
+        </span>
+    </p>
+    <div class=" h25 cb pl10">
+        <span class="btn2 cFFF fr mr10 takePhotoButton">拍 照</span>
+        <div class="fr mr10 commandSendStatus"></div>
+    </div>
+</div>
+<!--相册列表-->
+<div class=" pt10 h25 lh25 photoList">
+    <h4 class="w80 fl">相册列表</h4>
+    <span class="ico135 hand" title="刷新">刷新</span>
+</div>
+<!--相册走马灯效果-->
+<div class=" h250 lineS bcFFF"></div>
+<div class=" mt10 lineD radius3 bcFFC p5 overflowFrom">
+    <textarea class=" h50 w370 mauto" name="overflowText">请输入消息内容</textarea>
+    <p class="h30 lh25">
+        <span class="fl w60">标记超载：</span>
+        <span class="fl w250 checkbox">
+            <input class="w20" type="checkbox" name="overflowFlag" />
+            超载
+        </span>
+        <input class="fl w50" type="button" name="saveOverflowStatus" value=" 保 存 " />
+    </p>
+
+</div>

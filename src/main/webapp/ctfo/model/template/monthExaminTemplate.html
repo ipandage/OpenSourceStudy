@@ -1,0 +1,29 @@
+<!--考核月设置添加修改模版 monthExaminTemplate-->
+<form name="addMonthExaminForm">
+
+    <div class=" lineS69c_b p10">
+         <h3 class=" h25 lh25 mb20 pl10 bcFFC lineD">考核月信息 <font class="f12 ml10"> 带<font class=" cF00">*</font>号为必填项</font></h3>
+        
+        <input name="tbCheckmonthSet.checkTimeId" type="hidden"/>
+        <div class=" h25 lh25 mb10 w">
+            <div class="lh25 w80 fl tr" for="oldPassword"><font class="fb cF00">* </font>考核月度：</div>
+            <div class="fl w180"><input name="tbCheckmonthSet.checkTimeCode" class="w100 mt2 " type="text" value="" /></div>
+        </div>
+        <div class="lh25 h25 mb10 w">
+            <div class="lh25 w80 fl tr" for="oldPassword">月度描述：</div>
+            <input name="tbCheckmonthSet.checkTimeDesc"  class="w115 mt2 " type="text" />
+        </div>
+        <div class="lh25 h25 mb10 w">
+            <div class="lh25 w80 fl tr" for="oldPassword"><font class="fb cF00">* </font>开始时间：</div>
+            <div class="fl w180"><input name="tbCheckmonthSet.startDate" type="text" class=" w100 mt2 " /></div>
+        </div>
+        <div class=" lh25 h25 mb10 w">
+            <div class="lh25 w80 fl tr" for="oldPassword">结束时间：</div>
+            <input name="tbCheckmonthSet.endDate" type="text" class=" w115 mt2 " />
+        </div>
+    </div>
+    <div class="  bcBlue l-dialog-buttons">
+        <span class=" btn4 fl ml20" type="button" name="update" value="提交">提交</span>
+        <span class=" btn4 fr mr20" type="button" name="cancel" value="取消">取消</span>
+    </div>
+</form>

@@ -1,0 +1,159 @@
+<!-- 实时监控 > 实时告警 -->
+
+    <div class=" w240 fr activeAlarmHandlerContainer">
+        <div class=" lineS_l bcBlue h200">
+            <div class=" h25  lh25 overh">
+                <div class=" w20 fr">
+                    <span class="close monitorClose" title="关闭">关闭</span>
+                </div>
+                <div class=" fl h25 lh20 w160 alarmHandlerTab">
+                    <ul class=" pt3">
+                        <li class="fl hand ml10 w40 h20 tc radius3 lineS bcFFF">消息</li>
+                        <li class="fl hand ml10 w40 h20 tc radius3 lineS bcF2">拍照</li>
+                        <li class="fl hand ml10 w40 h20 tc radius3 lineS bcF2">解除</li>
+                    </ul>
+                </div>
+            </div>
+            <div class=" p5">
+
+                <!--实时告警（消息）-->
+                <div class="w alarmHandlerContent">
+                    <p class="h25 lh25">
+                        预置消息：
+                        <select class=" w120" name="preScheduleMessage">
+                            <option value="">请选择...</option>
+                        </select>
+                    </p>
+                    <p class="lh25 w200 mauto">
+                        <span class="fl w80 checkbox">
+                            <input class="w20" type="checkbox" name="messagePlayType" value="urgency" />
+                            紧急
+                        </span>
+                        <span class="fl w80 checkbox">
+                            <input class="w20" type="checkbox" name="messagePlayType" />
+                            显示
+                        </span>
+                        <span class="fl w80 checkbox">
+                            <input class="w20" type="checkbox" name="messagePlayType" />
+                            TTS播报
+                        </span>
+                        <span class="fl w80 checkbox">
+                            <input class="w20" type="checkbox" name="messagePlayType" />
+                            广告屏
+                        </span>
+                    </p>
+                    <textarea class=" h50 w220 mauto" name="messageContext">请输入消息内容</textarea>
+                    <p class="h30 lh25">
+                        <input class="fl w50 sendMessage" type="button" value=" 发送 " />
+                        <span class="fl checkbox ml10 w120">
+                            <input class="w20" type="checkbox" name="unchainAlarmWithMessage" />
+                            同时解除报警
+                        </span>
+                        <span class="fr w30 tr">
+                            <a href="javascript:void(0);" class="moreMessages">更多</a>
+                        </span>
+                    </p>
+                </div>
+                <!--实时告警（拍照）-->
+                <div class="w none alarmHandlerContent">
+                    <p class="lh25 h30">
+                        <span class="fl w50 checkbox">
+                            <input class="w20" type="checkbox" name="cameraAllPosition" />
+                            全选
+                        </span>
+                        <span class="fl w40 checkbox">
+                            <input class="w20" type="checkbox" name="cameraPosition" />
+                            1
+                        </span>
+                        <span class="fl w40 checkbox">
+                            <input class="w20" type="checkbox" name="cameraPosition" />
+                            2
+                        </span>
+                        <span class="fl w40 checkbox">
+                            <input class="w20" type="checkbox" name="cameraPosition" />
+                            3
+                        </span>
+                        <span class="fl w40 checkbox">
+                            <input class="w20" type="checkbox" name="cameraPosition" />
+                            4
+                        </span>
+                    </p>
+                    <p class="h30 lh25 pt10">
+                        <input class="fl w50 takePhoto" type="button" value=" 拍照 " />
+                        <span class="fl checkbox ml10 w120">
+                            <input class="w20" type="checkbox" name="unchainAlarmWithPhoto" />
+                            同时解除报警
+                        </span>
+                        <span class="fr w30 tr">
+                            <a href="javascript(0);" class="morePictures">更多</a>
+                        </span>
+                    </p>
+                    <!--走马灯效果-->
+                    <div>
+                        <div>
+                            <ul class="picShow">
+                                <li class="imgBox"><img src="" alt=""></li>
+                                <li class="imgBox"><img src="" alt=""></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--走马灯效果end-->
+                </div>
+                <!--实时告警（解除）-->
+                <div class="w none alarmHandlerContent">
+                    <p class="h25 lh25">请输入备注内容：</p>
+                    <textarea class=" h80 w220 mauto" name="cancelAlarmMem">已获悉，已处理</textarea>
+                    <p class="h30 lh30">
+                        <span class="fl">
+                            已选车辆数：
+                            <font class="cF00 selectedVehiclesForAlarm">0</font>
+                        </span>
+                        <input class="fr w80 cancelAlarm" type="button" value="解除报警" />
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" mr240 activeAlarmContentContainer">
+        <div class=" m_3_r w">
+            <div class="tit2 h25  lh25  lineS_b overh">
+                <h4 class=" pl10 pr5 lineS_r w80 fl">
+                    <span class="ico137"></span>
+                    实时告警
+                </h4>
+
+                <div class="w120 fl tr">
+                    车牌号：
+                    <input class="w50" type="text" name="vehicleNo" />
+                </div>
+                <div class="w140 fl tr">
+                    告警级别：
+                    <select class="w60" name="alarmLevel">
+                        <option value="-1">全部</option>
+                        <option value="0">严重告警</option>
+                        <option value="1">中度告警</option>
+                        <option value="2">一般告警</option>
+                    </select>
+                </div>
+                <div class="w140 fl tr">
+                    告警类型：
+                    <select class="w60" name="alarmType">
+                    </select>
+                </div>
+                <div class=" w40 pl20 fl">
+                    <span class="hand ico111 searchActiveVehicleList" title="查询">查询</span>
+                </div>
+                <div class=" w100 fl">
+                    <span class="checkbox">
+                        <input class=" w20" type="checkbox" name="autoRollFlag" />
+                        自动刷新
+                    </span>
+                </div>
+
+            </div>
+            <!--数据内容-->
+            <div class=" overa">
+                <div class="activeAlarmGridContainer"></div>
+            </div>
+        </div>
+    </div>

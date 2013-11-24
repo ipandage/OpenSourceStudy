@@ -1,0 +1,111 @@
+<!--左侧-->
+<div class=" h lineS_r">
+    <!--切换-->
+    <div class=" pt10 h30 lh30 lineS69c_b pl10 pr10 tc overh moduleTab">
+        <span class="fl hand w80 h30 radius3-t tit1 lineS69c_l lineS69c_r lineS69c_t cFFF">车 辆</span>
+        <span class="fl hand w80 h30 radius3-t tit2 lineS_l lineS_r lineS_t">关 注</span>
+    </div>
+    <div class=" h60 overh p10 lineS_b queryFormWrap">
+        <form name="queryForm">
+            <p class="h30 lh30 fl w120">
+                <select class=" w50b" name="keywordType">
+                    <option value="requestParam.like.vehicleNo">车牌号</option>
+                    <option value="requestParam.like.commaddr">SIM卡号</option>
+                    <option value="requestParam.like.tmac">终端号</option>
+                    <option value="requestParam.like.innerCode">内部编号</option>
+                    <option value="requestParam.like.entName">企业名称</option>
+                </select>
+                <input class="w50b" type="text" name="keyword" value="关键词" title="输入查询关键字"/>
+            </p>
+            <span class="btn1 cFFF fr queryButton">查询</span>
+            <div class="cl lh30 h30">
+                <ul class="fl checkbox lh25 h30 w160">
+                    <li class="fl"><input type="radio" name="statusType" class="w20" value="" checked />所有</li>
+                    <li class="fl"><input type="radio" name="statusType" class="w20" value="1" />在线</li>
+                    <li class="fl"><input type="radio" name="statusType" class="w20" value="3" />行驶</li>
+                    <li class="fl"><input type="radio" name="statusType" class="w20" value="4" />告警</li>
+                </ul>
+                <div class=" w40 fr">
+                    <span class="ico135 hand refreshButton" title="刷新">刷新</span>
+                    <span class="ico136 hand clearButton" title="清空已选车辆">清空已选车辆</span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--切换模块-->
+    <div class="cl">
+        <!--模块1-->
+        <div class="moduleContent">
+            <!--模块1搜索-->
+            <!-- <div class=" h60 overh p10 lineS_b">
+                <form name="orgTreeForm">
+                    <p class="h30 lh30 fl w120">
+                        <select class=" w50b" name="keywordType">
+                            <option value="requestParam.like.vehicleNo">车牌号</option>
+                            <option value="requestParam.like.commaddr">SIM卡号</option>
+                            <option value="requestParam.like.tmac">终端号</option>
+                            <option value="requestParam.like.innerCode">内部编号</option>
+                            <option value="requestParam.like.entName">企业名称</option>
+                        </select>
+                        <input class="w50b" type="text" name="keyword" value="关键词" title="输入查询关键字"/>
+                    </p>
+                    <span class="btn1 cFFF fr queryButton">查询</span>
+                    <div class="cl lh30 h30">
+                        <label class="fl checkbox lh25 h30 w100">
+                            <input type="radio" name="statusType" class="w20" value="" />所有
+                            <input type="radio" name="statusType" class="w20" value="1" />在线
+                            <input type="radio" name="statusType" class="w20" value="3" />行驶
+                            <input type="radio" name="statusType" class="w20" value="4" />告警
+                        </label>
+                        <div class=" w40 fr">
+                            <span class="ico135 hand refreshButton" title="刷新">刷新</span>
+                            <span class="ico136 hand clearButton" title="清空已选车辆">清空已选车辆</span>
+                        </div>
+                    </div>
+                </form>
+            </div> -->
+            <!--模块1tree-->
+            <div class="jsLeftTreeC overa">
+                <div class="overa org_tree orgTreeContainer"></div>
+            </div>
+
+        </div>
+        <!--模块2-->
+        <div class="none moduleContent">
+            <!--模块2功能-->
+            <!-- <div class="lineS_b inspectTreeForm">
+                <div class="cb p10 h30 tc w180 mauto">
+                    <span class="btn2 cFFF fl mr10 refreshInspectTreeButton">刷新</span>
+                    <span class="btn3 cFFF fl clearSelectedVehiclesButton">清空已选车辆</span>
+                </div>
+            </div> -->
+            <!--模块2树-->
+            <div class="jsLeftTreeS overa">
+                <div class="overa org_tree inspectTreeContainer"></div>
+            </div>
+        </div>
+
+        <!--左侧功能-->
+        <div class="p10 h50 lineS_t bcF2 funContainer">
+            <ul class=" w90b mauto">
+                <li class="w25b fl " actionType="tracking">
+                    <span class=" ico23 hand shadow"></span>
+                    <p class="cl h20 lh20">跟踪</p>
+                </li>
+                <li class="w25b fl " actionType="photo">
+                    <span class=" ico25 hand shadow"></span>
+                    <p class="cl h20 lh20">拍照</p>
+                </li>
+                <li class="w25b fl " actionType="recall">
+                    <span class=" ico211 hand shadow"></span>
+                    <p class="cl h20 lh20">点名</p>
+                </li>
+                <li class="w25b fl " actionType="message">
+                    <span class=" ico26 hand shadow"></span>
+                    <p class="cl h20 lh20">消息</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

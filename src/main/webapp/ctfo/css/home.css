@@ -1,0 +1,34 @@
+/* CSS Document */
+
+/*首页私有样式*/
+.carInfo{ background:url(../img/home.png) 0px 0px no-repeat; height:75px; overflow:hidden;}
+.carNum{ float:left; padding-left:120px; padding-top:35px; display: block;}
+.carNum li{ float:left; width:22px; height:35px; margin-right:2px; line-height:35px; color:#FFF; background:#000; text-align:center; font-size:18px; font-weight:bold; border:1px solid #111; border-radius:3px; }
+.carData{ float:right; width:100px; height:60px; margin-top:10px; display: block;line-height:20px; color:#369; font-weight:bold;}
+
+
+/*统计图表信息*/
+.statisticsBox{ height:320px; overflow:hidden;}
+.statisticsFlash{ height:290px; position:relative; overflow:hidden;}
+.viewSwitching{ width:88px; height:25px; position:absolute; bottom:0; right:0; overflow:hidden; z-index:5;}
+.statisticChartBox{height:260px; width:478px;}
+
+.car_list,.car_team{background:url(../img/home.png) 2px -144px no-repeat; height:265px; overflow:hidden;}
+.car_list li,.car_team li{border-bottom:1px dotted #999; height:25px;line-height:25px; float:left; clear:both; width:100%; overflow:hidden;}
+
+/*首页弹出框样式*/
+.kcptWindow_main_title {margin:10px auto;height:40px;border-top:1px dotted #1b85a9;border-bottom:1px dotted #1b85a9;}
+.kcptWindow_qyzx {width:650px;}
+.kcptWindow_top {}
+.kcptWindow_top_img {float:left;width:30px;height:30px;}
+.kcptWindow_top_close {float:right;cursor:pointer;width:34px;height:30px;}
+.kcptWindow_top_text {margin:0 34px 0 30px;color:#FFF;font-weight:bold;line-height:30px;}
+.kcptWindow_main {min-height:320px;background:#dce5ee;border:1px solid #1e74b4;border-bottom:none;padding-bottom:15px;}
+.kcptWindow_main_title {margin:10px auto;height:50px;border-top:1px dotted #1b85a9;border-bottom:1px dotted #1b85a9;}
+.kcptWindow_main_title_text {margin-top:10px;font-weight:bold;color:#F03;text-align:center;padding-top:5px;}
+.kcptWindow_main_title_info {float:right;color:#06C;margin-right:40px;line-height:25px;}
+.kcptWindow_main_text {margin:0 30px;color:#000;text-indent:2em;line-height:2;}
+.kcptWindow_main_info {float:right;color:#06C;margin-right:40px;}
+.kcptWindow_bottom {clear:both;}
+.kcptWindow_bottom_middle {font-size:0px;height:3px;background:#dce5ee;border:1px solid #1e74b4;border-top:none;}
+

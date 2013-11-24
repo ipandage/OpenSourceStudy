@@ -1,0 +1,135 @@
+
+<div class="box1">
+<!--leftbox-->
+        <div class=" w240 mt10 fl">
+        <!--box1-->
+            <div class="lineS06c radius3 bcFFF mb10 corpNews">
+                <div class="tit1 h30 lh25 pl10">
+                    <h3 class="cFFF pt3 fb"><span class="ico110"></span>企业资讯</h3>
+                </div>
+                <div class="corpNewsContent">
+                </div>
+            </div>
+        <!--box2-->
+            <div class="lineS06c radius3 bcFFF mb10 vehicleRanking">
+                <div class="tit1 h30 lh25 pl10 overh">
+                    <h3 class="cFFF pt3 fb fl w100"><span class="ico129"></span>节能排行榜</h3>
+                    <div class="pt10 fl lh20 h20 w100 vehicleRankingTab">
+                        <span class=" fl w50 tc hand bcFFF radius3-t isTab">车辆</span>
+                        <span class=" fl w50 tc hand isTab">车队</span>
+                    </div>
+                </div>
+                <div class="cl">
+                    <div class="rankingContent vehicleRankingContent"></div>
+                    <div class="none rankingContent vehicleTeamRankingContent"></div>
+                </div>
+            </div>
+        </div>
+<!--rightbox-->
+        <div class="w240 mt10 fr ">
+            <!--box1-->
+            <div class="lineS69c radius3 bcFFF mb10 systemNotice">
+                <div class="tit2 h30 lh25 pl10">
+                    <h3 class=" pt3 fb"><span class="ico130"></span>系统公告</h3>
+                </div>
+                <div class="w systemNoticeContent"></div>
+            </div>
+            <!--box2-->
+            <div class="lineS69c radius3 bcFFF mb10 questionAnswer">
+                <div class="tit2 h30 lh25 ">
+                    <div class="pt10 w200 lh20 h20 mauto overh questionAnswerTab">
+                        <span class=" w40b tc fl hand lineS69c_l lineS69c_t lineS69c_r bcFFF radius3-t isTab">信息反馈</span>
+                        <span class=" w40b tc fl hand isTab">我的问题</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="message messageList"></div>
+                    <div class="none message questionList"></div>
+                </div>
+            </div>
+        </div>
+         
+        
+<!--indexContent-->
+        <div class=" ml240 mr240 pt10" >
+            <div class="m_3 w">
+            <!--box1-->
+                <div class=" ml10 mr10 lineS69c bcFFF radius3">
+                    <!--车辆总数信息-->
+                    <div class="carInfo">
+                        <ul class="carNum">
+                            <li>0</li>
+                            <li>0</li>
+                            <li>0</li>
+                            <li>0</li>
+                            <li>0</li>
+                            <li>0</li>
+                            <li>0</li>
+                        </ul>
+                        <div class="carData">
+                            <p>在线车辆：<font>--</font></p>
+                            <p>在 线 率：<font>--</font></p>
+                            <p>行驶车辆：<font>--</font></p>
+                        </div>
+                    </div>
+                </div>
+            <!--box2-->
+                <div class=" ml10 mr10 mt10 lineS69c bcFFF radius3">
+                    <!--统计图表-->
+                    <div class="statisticsBox">
+                        <!--统计方式切换-->
+                        <div class=" tit2 h30 pl10 overh ">
+                        	<h3 class=" pt3 fb fl w140 h30 lh25 lineS_r"><span class="ico156"></span>告警趋势图</h3>
+                            <div class="fl lineS_r hand pt3 pl15 w50 lh25 h30 tit4 statisticChartTimeType" timeType="Day"><span class="ico153"></span>日</div>
+                            <div class="fl lineS_r hand pt3 pl15 w50 lh25 h30 statisticChartTimeType" timeType="Week"><span class="ico154"></span>周</div>
+                            <div class="fl lineS_r hand pt3 pl15 w50 lh25 h30 statisticChartTimeType" timeType="Month"><span class="ico155"></span>月</div>
+                        </div>
+                        <!--统计曲线flash图 flash: w=478px; h=290px;-->
+                        <div class="statisticsFlash">
+                            <div class="statisticChartBox" id="statisticChartBox">
+                                <div style="height:285px;line-height:285px;" class="tc cCCC">暂无数据</div>
+                            </div>
+                            <!--切换形式按键-->
+                            <div class="viewSwitching lineS69c_t lineS69c_l bcF2 radius3-t">
+                            	<div class="hand pl10 pr10 fl h30 tit4 statisticChartType" chartType="column">
+                                    <span class="ico214" title="柱形统计图">柱形统计图</span>
+                                </div>
+                                <div class="hand pl10 pr10 fl h30 statisticChartType" chartType="line">
+                                    <span class="ico213" title="曲线统计图">曲线统计图</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+            <!--box3-->
+                <div class=" ml10 mr10 mt10 lineS69c bcFFF radius3 traffic">
+                    <div class="tit2 h30 lh25 pl10">
+                        <h3 class=" pt3 fb fl w120"><span class="ico131"></span>路况快报</h3>
+                        <div class="fr pr10 h30 lh30 tr cC00"><a href="javascript:void(0);" class="getMore">更多</a></div>
+                        <div class="fr pr10 mt3">
+                            <select name="provinceSelect" class=" w60 h25 lh20">
+                                <option value="">全部</option>
+                                <option value="110000">北京</option>
+                                <option value="120000">天津</option>
+                                <option value="130000">河北</option>
+                                <option value="410000">河南</option>
+                                <option value="430000">湖南</option>
+                                <option value="450000">广西</option>
+                                <option value="460000">海南</option>
+                                <option value="520000">贵州</option>
+                                <option value="610000">陕西</option>
+                                <option value="620000">甘肃</option>
+                                <option value="630000">青海</option>
+                                <option value="650000">新疆</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="p10 trafficContent">
+                    </div>
+                </div>
+                
+            </div>
+        </div>        
+        
+       
+    </div>
+
