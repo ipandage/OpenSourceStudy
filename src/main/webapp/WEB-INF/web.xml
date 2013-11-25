@@ -50,11 +50,4 @@
 	<session-config>
 		<session-timeout>15</session-timeout>
 	</session-config>
-	<!-- 配置自定义标签 -->
-	<jsp-config>
-    	<taglib>
-        	<taglib-uri>/mytaglib</taglib-uri>
-        	<taglib-location>/WEB-INF/tlds/Token.tld</taglib-location>
-    	</taglib>
-  	</jsp-config>
 </web-app>
