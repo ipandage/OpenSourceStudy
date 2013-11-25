@@ -8,7 +8,7 @@
 	<name>OpenSourceStudy</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
- <!-- log4j -->  
+ 		<!-- log4j -->  
         <dependency>  
             <groupId>log4j</groupId>  
             <artifactId>log4j</artifactId>  
