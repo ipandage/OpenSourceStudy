@@ -6,7 +6,7 @@ import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.config.CacheConfiguration;
 
 import org.apache.log4j.Logger;
-import org.mspring.platform.utils.StringUtils;
+import com.study.platform.utils.StringUtils;
 
 /**
  * Hibernate 查询缓存规则

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.mspring.platform.dao.hibernate.common;
+package com.study.platform.dao.hibernate.common;
 
 import java.io.Serializable;
 
