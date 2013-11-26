@@ -88,7 +88,7 @@
         <dependency>  
             <groupId>org.hibernate</groupId>  
             <artifactId>hibernate-core</artifactId>  
-            <version>4.2.0.Final</version>  
+            <version>4.1.0.Final</version>  
         </dependency>  
         
         <dependency>
@@ -113,6 +113,18 @@
 			<groupId>org.htmlparser</groupId>
 			<artifactId>htmlparser</artifactId>
 			<version>2.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.8.3</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>jakarta-regexp</groupId>
+			<artifactId>jakarta-regexp</artifactId>
+			<version>1.4</version>
 		</dependency>
 		
 	</dependencies>
