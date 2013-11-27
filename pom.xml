@@ -32,12 +32,6 @@
             <artifactId>mysql-connector-java</artifactId>  
             <version>5.1.24</version>  
         </dependency>  
-        <!-- mchange C3P0 数据源 -->  
-        <dependency>  
-            <groupId>com.mchange</groupId>  
-            <artifactId>c3p0</artifactId>  
-            <version>0.9.5-pre2</version>  
-        </dependency>  
           
         <dependency>  
             <groupId>org.springframework</groupId>  
@@ -79,12 +73,12 @@
             <artifactId>spring-webmvc</artifactId>  
             <version>3.2.2.RELEASE</version>  
         </dependency>  
-        
         <dependency>  
-            <groupId>org.codehaus.jackson</groupId>  
-            <artifactId>jackson-mapper-asl</artifactId>  
-            <version>1.9.12</version>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-test</artifactId>  
+            <version>3.2.2.RELEASE</version>  
         </dependency>  
+        
         
         <!-- hibernate -->  
         <dependency>  
@@ -129,6 +123,12 @@
 			<version>1.4</version>
 		</dependency>
 		
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.1</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		 <!-- Maven插件 -->  
@@ -148,13 +148,6 @@
   
             <plugin>  
                 <artifactId>maven-resources-plugin</artifactId>  
-                <configuration>  
-                    <encoding>utf-8</encoding>  
-                </configuration>  
-            </plugin>  
-  
-            <plugin>  
-                <artifactId>maven-javadoc-plugin</artifactId>  
                 <configuration>  
                     <encoding>utf-8</encoding>  
                 </configuration>  
