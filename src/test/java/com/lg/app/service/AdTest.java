@@ -18,6 +18,7 @@ import com.lg.app.entity.Ad;
 import com.lg.app.web.query.AdQueryCriterion;
 import com.lg.platform.dao.support.Page;
 import com.lg.platform.dao.support.Sort;
+import com.lg.platform.utils.JSONUtils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
@@ -57,7 +58,8 @@ public class AdTest extends AbstractTransactionalJUnit4SpringContextTests {
 			adPage.setSort(new Sort("id", Sort.DESC));
 		}
 		adPage = adService.listPage(new AdQueryCriterion(queryParams), adPage);
-		System.out.println(adPage.getTotalCount());
+		String json = JSONUtils.toJson(adPage);
+		System.out.println(json);
 	}
 
 }
