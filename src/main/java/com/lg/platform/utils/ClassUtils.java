@@ -5,7 +5,7 @@ import java.lang.reflect.Type;
 
 /**
  * 
- * @author Gao Youbo
+ * @author Gao xingang
  * @since 2013年7月5日
  */
 public class ClassUtils {

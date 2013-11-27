@@ -23,7 +23,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 /**
  * 处理请求参数
  * 
- * @author Gao Youbo
+ * @author Gao xingang
  * @since 2012-7-28
  */
 @SuppressWarnings({ "rawtypes", "unchecked" })

@@ -6,7 +6,7 @@ package com.lg.platform.utils;
 /**
  * Base64加密解密算法
  * 
- * @author Gao Youbo
+ * @author Gao xingang
  * @since 2012-7-28
  */
 public final class Base64 {

@@ -5,7 +5,7 @@ package com.lg.platform.utils;
 
 
 /**
- * @author Gao Youbo
+ * @author Gao xingang
  * @since 2012-7-29
  * @Description 
  * @TODO StringUtils中用到的常量

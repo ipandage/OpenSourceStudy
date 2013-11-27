@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author Gao Youbo
+ * @author Gao xingang
  * @since 2012-7-13
  * @Description
  * @TODO

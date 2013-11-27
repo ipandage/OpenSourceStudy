@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 /**
- * @author Gao Youbo
+ * @author Gao xingang
  * @since Feb 20, 2012
  */
 @SuppressWarnings({ "rawtypes", "unchecked" })

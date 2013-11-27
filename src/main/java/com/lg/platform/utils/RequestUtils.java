@@ -10,7 +10,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author Gao Youbo
+ * @author Gao xingang
  * @since Jan 31, 2012
  */
 public class RequestUtils {

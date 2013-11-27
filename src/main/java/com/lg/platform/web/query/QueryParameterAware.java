@@ -3,7 +3,7 @@ package com.lg.platform.web.query;
 import java.util.Map;
 
 /**
- * @author Gao Youbo
+ * @author Gao xingang
  * @since Mar 21, 2012
  */
 public abstract interface QueryParameterAware {

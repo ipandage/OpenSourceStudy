@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * @author Gao Youbo
+ * @author Gao xingang
  * @since Feb 20, 2012
  */
 public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
