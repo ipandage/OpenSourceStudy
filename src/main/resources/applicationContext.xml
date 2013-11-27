@@ -11,16 +11,6 @@
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
 	default-lazy-init="true">
 
-	<!-- <context:annotation-config /> -->
-	<context:component-scan base-package="org.mspring">
-		<context:exclude-filter type="annotation" expression="org.mspring.platform.web.freemarker.widget.stereotype.Widget" />
-	</context:component-scan>
-	
-	<aop:aspectj-autoproxy expose-proxy="true" proxy-target-class="true"/>
-	<task:executor id="taskExecutor" pool-size="5" queue-capacity="25"/>
-	<task:scheduler id="taskScheduler" pool-size="5"/>
-	<task:annotation-driven proxy-target-class="true" executor="taskExecutor" scheduler="taskScheduler"/>
-
 	<!-- 定义受环境影响的变量 -->
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -114,8 +104,8 @@
 	</bean>
 
 	<bean id="namingStrategy"
-		class="org.mspring.platform.dao.hibernate.PrefixImprovedNamingStrategy">
-		<property name="tablePrefix" value="javaos_" />
+		class="com.lg.platform.dao.hibernate.PrefixImprovedNamingStrategy">
+		<property name="tablePrefix" value="mlog_" />
 		<property name="columnPrefix" value="_" />
 	</bean>
 
@@ -146,40 +136,4 @@
 		</tx:attributes>
 	</tx:advice>
 
-	<!-- Cache -->
-	<bean id="cacheManager"
-		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-		<property name="shared" value="true" />
-		<property name="configLocation" value="classpath:ehcache.xml" />
-	</bean>
-	
-	<bean id="searchEngine" class="org.mspring.mlog.search.engine.LuceneSearchEngine">
-		<property name="indexPath" value="${indexPath}" />
-	</bean>
-
-	<!-- Freemarker Configuration -->
-	<bean id="freemarkerConfigurer"
-		class="org.mspring.platform.web.freemarker.ExtendsFreeMarkerConfigurer">
-		<property name="templateLoaderPaths">
-			<array>
-				<value>/</value>
-				<value>/WEB-INF/template/</value>
-			</array>
-		</property>
-		<property name="freemarkerSettings">
-			<props>
-				<prop key="tag_syntax">auto_detect</prop>
-				<prop key="template_update_delay">5</prop>
-				<prop key="defaultEncoding">UTF-8</prop>
-				<prop key="url_escaping_charset">UTF-8</prop>
-				<prop key="locale">zh_CN</prop>
-				<prop key="boolean_format">true,false</prop>
-				<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
-				<prop key="date_format">yyyy-MM-dd</prop>
-				<prop key="time_format">HH:mm:ss</prop>
-				<prop key="number_format">0.######</prop>
-				<prop key="whitespace_stripping">true</prop>
-			</props>
-		</property>
-	</bean>
 </beans>
