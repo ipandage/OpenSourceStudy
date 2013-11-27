@@ -11,6 +11,8 @@
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
 	default-lazy-init="true">
 
+	<context:component-scan base-package="com.lg"/>
+
 	<!-- 定义受环境影响的变量 -->
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -92,7 +94,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan">
 			<list>
-				<value>org.mspring.**.entity</value>
+				<value>com.lg.**.entity</value>
 			</list>
 		</property>
 	</bean>
@@ -105,7 +107,7 @@
 
 	<bean id="namingStrategy"
 		class="com.lg.platform.dao.hibernate.PrefixImprovedNamingStrategy">
-		<property name="tablePrefix" value="mlog_" />
+		<property name="tablePrefix" value="javaos_" />
 		<property name="columnPrefix" value="_" />
 	</bean>
 
@@ -118,13 +120,9 @@
 	</bean>
 
 	<aop:config>
-		<aop:advisor advice-ref="txAdvice" pointcut="execution(* org.mspring..service..*.*(..))"/>
-		<!-- 
-		<aop:advisor advice-ref="txAdvice" pointcut="execution(* org.mspring.platform.dao.hibernate.GenericDao.*(..))"/>
-		<aop:advisor advice-ref="txAdvice" pointcut="execution(* org.mspring.platform.dao.hibernate.BaseDao.*(..))"/>
-		-->
-		<!-- <aop:advisor advice-ref="txAdvice" pointcut="execution(* org.mspring.mlog.service.*.*(..))"/> -->
-		<!-- <aop:advisor advice-ref="txAdvice" pointcut="execution(* *..service.*Service(..))" order="0" /> -->
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.lg..service..*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.lg.platform.dao.hibernate.GenericDao.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.lg.platform.dao.hibernate.BaseDao.*(..))"/>
 	</aop:config>
 
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
