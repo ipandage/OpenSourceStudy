@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lg.app.entity.Ad;
 import com.lg.app.service.AdService;
@@ -36,8 +37,9 @@ public class Admin_AdWidget {
 	private AdService adService;
 
     @RequestMapping("/list")
+    @ResponseBody
     @Log
-    public String list(@ModelAttribute Page<Ad> adPage, @ModelAttribute Ad ad, @RequestParam Map queryParams, HttpServletRequest request, HttpServletResponse response, Model model) {
+    public Page<Ad> list(@ModelAttribute Page<Ad> adPage, @ModelAttribute Ad ad, @RequestParam Map queryParams, HttpServletRequest request, HttpServletResponse response, Model model) {
         if (adPage == null) {
             adPage = new Page<Ad>();
         }
@@ -45,7 +47,6 @@ public class Admin_AdWidget {
             adPage.setSort(new Sort("id", Sort.DESC));
         }
         adPage = adService.listPage(new AdQueryCriterion(queryParams), adPage);
-        model.addAttribute("adPage", adPage);
-        return "/admin/ad/listAd";
+        return adPage;
     }
 }

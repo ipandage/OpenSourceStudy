@@ -13,6 +13,7 @@
 
 	<context:component-scan base-package="com.lg"/>
 
+
 	<!-- 定义受环境影响的变量 -->
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
