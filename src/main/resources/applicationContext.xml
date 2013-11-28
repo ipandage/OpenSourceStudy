@@ -107,7 +107,7 @@
 
 	<bean id="namingStrategy"
 		class="com.lg.platform.dao.hibernate.PrefixImprovedNamingStrategy">
-		<property name="tablePrefix" value="mlog_" />
+		<property name="tablePrefix" value="javaos_" />
 		<property name="columnPrefix" value="_" />
 	</bean>
 
