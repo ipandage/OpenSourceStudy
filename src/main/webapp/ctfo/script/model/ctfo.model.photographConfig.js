@@ -42,21 +42,6 @@ CTFO.Model.PhotographConfig = (function(){
 					$(container).find('input[name="buttonDerived"]').remove();
 				}
 			},
-
-	        /**
-			 * @description 初始化左侧树,只需要车辆TAB页
-			 */
-	        initTreeContainer : function () {
-	            var options = {
-	              container: htmlObj.treeContainer,
-	              defaultSelectedTab: 0,//defaultSelectedTab: 默认选中标签, 0:组织树,1:车队树,2:车辆树,3:线路树
-	              hadOrgTree: true,
-	              hadTeamTree: false,
-	              hadVehicleTree: false,
-	              hadLineTree: false
-	            };
-	            leftTree = new CTFO.Model.UniversalTree(options);
-	        },
 			
 			/**
 			 * @description 初始化Grid的查询
@@ -111,88 +96,41 @@ CTFO.Model.PhotographConfig = (function(){
 			 */
 			initGrid : function(gridContainer) {
 				var gridOptions = {
-					root : 'Rows',
-					record : 'Total',
+					root : 'result',
+					record : 'totalCount',
 					checkbox : true,
 					columns : [ {
-						display : '车牌号',
-						name : 'vehicleNo',
+						display : 'name',
+						name : 'name',
 						width : 100,
 						sortable : true,
 						isSort : false,
 						align : 'center'
 					},
 					{
-						display : '车牌颜色',
-						name : 'plateColor',
+						display : 'id',
+						name : 'id',
 						width : 100,
 						sortable : true,
 						isSort : false,
-						align : 'center',
-						render : function(row) {
-							var plTemp = CTFO.utilFuns.codeManager.getNameByCode("SYS_VCL_PLATECOLOR", row.plateColor);
-							return plTemp ? plTemp : '';
-						}
+						align : 'center'
 					},
 					{
-						display : '所属企业',
-						name : 'pentName',
+						display : 'description',
+						name : 'description',
 						width : 180,
 						sortable : true,
 						isSort : false,
 						align : 'center'
 					},
 					{
-						display : '所属车队',
-						name : 'entName',
+						display : 'createTime',
+						name : 'createTime',
 						width : 150,
 						sortable : true,
 						isSort : false,
 						align : 'center',
 						toggle : false
-					},
-					{
-						display : '设置时间',
-						name : 'settingDate',
-						width : 160,
-						sortable : true,
-						isSort : false,
-						align : 'center',
-						render : function(row) {
-							var r = row.settingDate ? CTFO.utilFuns.dateFuns.utc2date(row.settingDate) : '--';
-							return r;
-						}
-					},
-					{
-						display : '设置人',
-						name : 'opName',
-						width : 100,
-						sortable : true,
-						isSort : false,
-						align : 'center',
-						render : function(row) {
-							var r = row.opName ? row.opName : '--';
-							return r;
-						}
-					},
-					{
-						display : '设置状态',
-						name : 'sendStatus',
-						width : 100,
-						sortable : true,
-						isSort : false,
-						align : 'center',
-						render : function(row) {
-							if (row.sendStatus == "-1") {
-								return "成功";
-							} else if (row.sendStatus == "0") {
-								return "成功";
-							} else if (row.sendStatus == "1") {
-								return "失败";
-							} else {
-								return "未设置";
-							}
-						}
 					},
 					{
 						display : '操作',
@@ -210,13 +148,7 @@ CTFO.Model.PhotographConfig = (function(){
 							if(row.sendStatus == "") {
 								view = "&nbsp;&nbsp;&nbsp;&nbsp;";
 							} else {
-								view = "<a href='javascript:void(0)' class='viewPhotoConf' vid='"+ row.vid +"'>查看<a/>";
-							}
-							setting = "<a  href='javascript:void(0)' class='addPhotoConf' vid='"+ row.vid +"'>设置</a>";
-							if (row.sendStatus == "1")  {
-								reset = "<a href='javascript:void(0)' class='resetPhotoConf' vid='"+ row.vid +"'>重新发送</a>";
-							} else if (row.sendStatus == "-1" || row.sendStatus == "0") {
-								cancel = "<a href='javascript:void(0)' class='cannelPhotoConf' vid='"+ row.vid +"'>取消</a>";
+								view = "<a href='javascript:void(0)' class='viewPhotoConf' vid='"+ row.id +"'>查看<a/>";
 							}
 							return "&nbsp;" + view + "&nbsp;&nbsp;&nbsp;" + setting + "&nbsp;&nbsp;&nbsp;" + reset+ "&nbsp;&nbsp;&nbsp;" + cancel;
 						}
@@ -875,14 +807,14 @@ CTFO.Model.PhotographConfig = (function(){
     					treeContainer : $('#' + p.mid).find('.leftTreeContainer')//树容器
     				};
             	this.resize(p.cHeight);
+            	debugger;
 				// TODO 初始化赋值
 				//pvf.initAuth(htmlObj.mainContainer);
 				pvf.initGrid(htmlObj.photographConfigGrid);
 				//查询按钮 设置 以及 批量设置和批量取消
 				pvf.initGridAreaButton(htmlObj.searchForm);
 				pvf.initFormSelects();
-                //初始化左侧树
-                pvf.initTreeContainer();
+                
 
 				return this;
             },
@@ -891,7 +823,7 @@ CTFO.Model.PhotographConfig = (function(){
                 p.mainContainer.height(ch);
                 pvp.wh = {
                 		cut : 10,
-                		w : htmlObj.mainContainer.width() - htmlObj.treeContainer.width() - 5,
+                		w : htmlObj.mainContainer.width()  - 5,
                 		h : htmlObj.mainContainer.height(),
                 		gh : htmlObj.mainContainer.height() - htmlObj.rightContainer.find('.pageLocation').height() - htmlObj.rightContainer.find('.photographConfigTerm').height()  - 20
                 };

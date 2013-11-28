@@ -760,9 +760,9 @@ CTFO.Model.HomePage = (function() {
         resize(p.cHeight);
         bindEvent();
         initBoxContent();
-        initStatisticNum();
-        initStatisticChartShowTypes();
-        bindStatisticChartEvent();
+        //initStatisticNum();
+        //initStatisticChartShowTypes();
+        //bindStatisticChartEvent();
         return this;
       },
       resize: function(ch) {
