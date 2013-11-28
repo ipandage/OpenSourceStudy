@@ -107,7 +107,7 @@
 
 	<bean id="namingStrategy"
 		class="com.lg.platform.dao.hibernate.PrefixImprovedNamingStrategy">
-		<property name="tablePrefix" value="javaos_" />
+		<property name="tablePrefix" value="mlog_" />
 		<property name="columnPrefix" value="_" />
 	</bean>
 
@@ -120,9 +120,7 @@
 	</bean>
 
 	<aop:config>
-		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.lg..service..*.*(..))"/>
-		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.lg.platform.dao.hibernate.GenericDao.*(..))"/>
-		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.lg.platform.dao.hibernate.BaseDao.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* org.lg..service..*.*(..))"/>
 	</aop:config>
 
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
