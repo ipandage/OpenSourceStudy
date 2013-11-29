@@ -1,4 +1,4 @@
-CTFO.Model.OrgTree = (function() {
+LG.Model.OrgTree = (function() {
     // private static attributes.
     var test = '';
     // private static method.
@@ -23,7 +23,7 @@ CTFO.Model.OrgTree = (function() {
     };
 })();
 // public, non-privileged method.
-CTFO.Model.OrgTree.prototype = {
+LG.Model.OrgTree.prototype = {
     onNodeHover : function() {
         alert('ttt');
     },
@@ -32,7 +32,7 @@ CTFO.Model.OrgTree.prototype = {
     }
 };
 
-CTFO.Model.MultipleTree = (function(){
+LG.Model.MultipleTree = (function(){
     var uniqueInstance;
     function constructor() {
         var p = {};

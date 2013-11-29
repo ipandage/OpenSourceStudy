@@ -1,34 +1,23 @@
 <!--触发拍照设置  photographConfig-->
 <!--main-->	
-    <div class="contentRight main ml_240">
-        <div class=" h25 lh25 lineS_b tit2 overh pageLocation">
-            <span class=" ico146"></span>
-            <font>当前位置：</font>
-            <font>车辆监控</font> -> 
-            <font>触发拍照设置</font>
-        </div>
-        <div class="contentRightContent m3">
-              <div class=" lineS69c h30 p5 tit5 overh photographConfigTerm">
-                    <form name='photoConfSearchForm'>
-              	      <!--组织ID  -->
-              	  	  <input type="hidden" name="requestParam.equal.corpIds" value=""/>
-	                  <div class="h30 lh30 fl w160">
-	                                                                             车牌号：<input name="requestParam.like.vehicleNo" type="text" value=""/>
-	                  </div>
-	                  <div class="h30 lh30 fl w160">
-	                      <font class=" ml10">设置状态：</font>
-	                      <select name="requestParam.equal.sendStatus">
-	                          <option value="">全部</option>
-	                          <option value="0">成功</option>
-	                          <option value="1">失败</option>
-	                          <option value="3">未设置</option>
-	                      </select>
-	                  </div>
-	                  <span class=" btn1 cFFF fl ml20 searchGrid">查 询</span>
-	                  <span class=" btn2 cFFF fr ml20 batchCannel">批量取消</span>
-	                  <span class=" btn2 cFFF fr ml20 batchSetting">批量设置</span>
-                  </form>
-              </div>
-              <div class=" lineS mt3 bcFFF photographConfigGrid" style=" height:490px"></div>
-        </div>
+<div class="contentRight main">
+    <div class=" h25 lh25 lineS_b tit2 overh pageLocation">
+        <span class=" ico146"></span>
+        <font>当前位置：</font>
+        <font>系统设置</font> -> 
+        <font>AD管理</font>
     </div>
+    <div class="contentRightContent m3">
+          <div class=" lineS69c h30 p5 tit5 overh photographConfigTerm">
+                <form name='photoConfSearchForm'>
+          	      <!--组织ID  -->
+          	  	  <input type="hidden" name="requestParam.equal.corpIds" value=""/>
+               <div class="h30 lh30 fl w160">
+                                                          名称：<input name="requestParam.like.vehicleNo" type="text" value=""/>
+               </div>
+               <span class=" btn1 cFFF fl ml20 searchGrid">查 询</span>
+              </form>
+          </div>
+          <div class=" lineS mt3 bcFFF photographConfigGrid" style=" height:490px"></div>
+    </div>
+</div>

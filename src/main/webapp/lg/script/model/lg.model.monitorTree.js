@@ -2,7 +2,7 @@
  * [ 监控树模块]
  * @return {[type]}     [description]
  */
-CTFO.Model.MonitorTree = (function() {
+LG.Model.MonitorTree = (function() {
   var uniqueInstance;
 
   function constructor() {
@@ -137,7 +137,7 @@ CTFO.Model.MonitorTree = (function() {
         statusParamName = getVehicleFilterOption(statusType);
 
       param[statusParamName] = statusType;
-      orgTree.loadData(note.target, CTFO.config.sources.orgTree, param, ischecked);
+      orgTree.loadData(note.target, LG.config.sources.orgTree, param, ischecked);
     };
     /**
      * [alterVehicleCache 改变已选车辆缓存]
@@ -158,7 +158,7 @@ CTFO.Model.MonitorTree = (function() {
           selectedVehicleIds.splice(pos, 1);
         }
       });
-      CTFO.cache.selectedVehicleIds = selectedVehicleIds;
+      LG.cache.selectedVehicleIds = selectedVehicleIds;
       if (flag) p.monitorObj.getVehicleLatestStatusData(vids, true);
       else p.monitorObj.removeVehicleMarkers(vids);
     };
@@ -179,7 +179,7 @@ CTFO.Model.MonitorTree = (function() {
         d["status"] = "1";
         d["cid"] = nodeId;
         if (pos < 0) checkedNodeCache.push(nodeId);
-        CTFO.config.globalObject.addMarkerFinishedFlag = false;
+        LG.config.globalObject.addMarkerFinishedFlag = false;
       }else {
         if(pos >= 0) checkedNodeCache.splice(pos, 1);
       }
@@ -216,7 +216,7 @@ CTFO.Model.MonitorTree = (function() {
       if(flag) {
         getVehiclesByEntId(param, function(d) {
           if(!d || (d && d.error) || (d && d.length < 1)) {
-            CTFO.config.globalObject.addMarkerFinishedFlag = true;
+            LG.config.globalObject.addMarkerFinishedFlag = true;
             return false;
           }
           vehiclesInOrg[entId] = d.slice(0); // 每次查询覆盖缓存
@@ -253,7 +253,7 @@ CTFO.Model.MonitorTree = (function() {
      */
     var getVehiclesByEntId = function(param, callback) {
       $.ajax({
-        url: CTFO.config.sources.getVehiclesByEntId,
+        url: LG.config.sources.getVehiclesByEntId,
         type: 'POST',
         dataType: 'json',
         data: param,
@@ -308,7 +308,7 @@ CTFO.Model.MonitorTree = (function() {
      * @param {Function} callback [回调函数]
      */
     var addInspectiveVehicle = function(param, callback) {
-      $.get(CTFO.config.sources.addInspectiveVehicle, param, function(data, textStatus, xhr) {
+      $.get(LG.config.sources.addInspectiveVehicle, param, function(data, textStatus, xhr) {
         if (data.indexOf("success") > -1) {
           var autoId = data.split("_")[1];
           inspectiveVehicles[vid] = autoId;
@@ -329,7 +329,7 @@ CTFO.Model.MonitorTree = (function() {
      * @return {[type]}            [description]
      */
     var removeInspectiveVehicle = function(param, callback) {
-      $.get(CTFO.config.sources.removeInspectiveVehicle, param, function(data, textStatus, xhr) {
+      $.get(LG.config.sources.removeInspectiveVehicle, param, function(data, textStatus, xhr) {
         if (data === "success") {
             if (callback && (callback instanceof Function)) {
                 callback.call();
@@ -371,9 +371,9 @@ CTFO.Model.MonitorTree = (function() {
       });
     };
     var validateMaxVehicles = function(note) {
-      if (!CTFO.config.globalObject.addMarkerFinishedFlag) return false;
+      if (!LG.config.globalObject.addMarkerFinishedFlag) return false;
       var flag = $(note.target).find('div.l-checkbox').hasClass('l-checkbox-checked');
-      if (!flag && (CTFO.cache.selectedVehicleIds.length + parseInt(note.data[orgTreeDataColumn.total], 10)) > vehiclesInMapLimit) {
+      if (!flag && (LG.cache.selectedVehicleIds.length + parseInt(note.data[orgTreeDataColumn.total], 10)) > vehiclesInMapLimit) {
         $.ligerDialog.alert("选择车辆超过上限!", "提示", "error");
         return false;
       } else {
@@ -386,10 +386,10 @@ CTFO.Model.MonitorTree = (function() {
      */
     var initOrgTree = function() {
       var orgTreeOptions = {
-        url : CTFO.config.sources.orgTree,
+        url : LG.config.sources.orgTree,
         treeWidth: treeWidth,
         param : {
-            "requestParam.equal.entId" : CTFO.cache.user.entId,
+            "requestParam.equal.entId" : LG.cache.user.entId,
             "requestParam.equal.root" : "true",
             "requestParam.equal.entType" : -1
         },
@@ -410,7 +410,7 @@ CTFO.Model.MonitorTree = (function() {
           followVehicle(d, flag, orgTreeDataColumn);
         },
         onClick: function(note) {
-          CTFO.utilFuns.throttle(function(note){triggerNodeAction(note, true);}, 200, 400);
+          LG.utilFuns.throttle(function(note){triggerNodeAction(note, true);}, 200, 400);
         },
         onBeforeExpand : getTreeLeaves,
         filterData: function(d, ischecked) {
@@ -446,7 +446,7 @@ CTFO.Model.MonitorTree = (function() {
           followVehicle(d, flag, inspectTreeDataColumn);
         },
         onClick: function(note) {
-          CTFO.utilFuns.throttle(function(note){triggerNodeAction(note, false);}, 200, 400);
+          LG.utilFuns.throttle(function(note){triggerNodeAction(note, false);}, 200, 400);
         },
         filterData: function(d, ischecked) {
           return filterTreeNodes(d, ischecked, inspectTreeDataColumn);
@@ -463,7 +463,7 @@ CTFO.Model.MonitorTree = (function() {
      * @return {[type]}       [description]
      */
     var refreshInspectiveVehicles = function(param) {
-      $.get(CTFO.config.sources.inspectiveVehicles, param, function(data, textStatus, xhr) {
+      $.get(LG.config.sources.inspectiveVehicles, param, function(data, textStatus, xhr) {
         rebuildInspectiveVehiclesData(data);
       }, 'json');
 
@@ -509,7 +509,7 @@ CTFO.Model.MonitorTree = (function() {
     return {
       init: function(options) {
         p = $.extend({}, p || {}, options || {});
-        p.container.load(CTFO.config.template.monitorTree, null, function() {
+        p.container.load(LG.config.template.monitorTree, null, function() {
           htmlObj = {
             moduleTab: p.container.find('.moduleTab > span'),
             moduleContent: p.container.find('.moduleContent'),
@@ -526,7 +526,7 @@ CTFO.Model.MonitorTree = (function() {
           initOrgTree();
           initInspectTree();
 
-          // batchAction = new CTFO.Model.BatchActionHandler();
+          // batchAction = new LG.Model.BatchActionHandler();
 
         });
 
@@ -557,13 +557,13 @@ CTFO.Model.MonitorTree = (function() {
  * [ 批量按钮动作对象]
  * @return {[Function]}      [批量按钮动作对象]
  */
-CTFO.Model.BatchActionHandler = (function () {
+LG.Model.BatchActionHandler = (function () {
   var constructor = function (options) {
     var p = null,
       commandStatusTip = $('#commandStatusReturn'),
       test = '';
     var bindEvent = function (actionType) {
-      if (!CTFO.cache.selectedVehicleIds || CTFO.cache.selectedVehicleIds.length < 1) {
+      if (!LG.cache.selectedVehicleIds || LG.cache.selectedVehicleIds.length < 1) {
         $.ligerDialog.alert("请至少勾选一辆车!", "提示", "error");
         return false;
       }
@@ -601,7 +601,7 @@ CTFO.Model.BatchActionHandler = (function () {
      * @return {[type]} [description]
      */
     var bindRecallEvent = function () {
-      var vids = CTFO.cache.selectedVehicleIds;
+      var vids = LG.cache.selectedVehicleIds;
       $.ligerDialog.confirm("是否对所选车辆进行点名?", function(r) {
         if (!r) return false;
         var qp = {
@@ -625,7 +625,7 @@ CTFO.Model.BatchActionHandler = (function () {
               },
               sendedTip: commandStatusTip
             };
-        CTFO.utilFuns.commandFuns.sendCommands('calling', qp, cp);
+        LG.utilFuns.commandFuns.sendCommands('calling', qp, cp);
       });
     };
     /**

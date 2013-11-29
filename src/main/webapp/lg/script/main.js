@@ -22,20 +22,20 @@ require.config({
     ajaxform: 'plugin/jquery/jquery.form',//异步表单提交 文件上传
     webeditor: 'plugin/jquery/jquery_webedit/scripts/jHtmlArea-0.7.5',//web编辑器
 
-    initConfig: 'control/ctfo.config', // 配置参数
-    frame: 'control/ctfo.frame', // 框架模型
-    util: 'control/ctfo.util', // 公共组件
-    commitLog: 'model/ctfo.model.commitLog', // 操作日志
-    homePage: 'model/ctfo.model.homePage', // 首页
-    monitor: 'model/ctfo.model.monitor', // 实时监控
-    monitorTree: 'model/ctfo.model.monitorTree', // 实时监控 > 左侧树模块
+    initConfig: 'control/lg.config', // 配置参数
+    frame: 'control/lg.frame', // 框架模型
+    util: 'control/lg.util', // 公共组件
+    commitLog: 'model/lg.model.commitLog', // 操作日志
+    homePage: 'model/lg.model.homePage', // 首页
+    monitor: 'model/lg.model.monitor', // 实时监控
+    monitorTree: 'model/lg.model.monitorTree', // 实时监控 > 左侧树模块
 
-    universalTree: 'model/universalTree/ctfo.model.universalTree', // 通用左侧树
-    treeModel: 'model/universalTree/ctfo.model.treeModel', // 通用左侧树 > 组织树
-    vehicleTree: 'model/universalTree/ctfo.model.vehicleTree', // 通用左侧树 > 车辆树
-    orgTree: 'model/universalTree/ctfo.model.orgTree', // 通用左侧树 > 组织树(无checkbox)
+    universalTree: 'model/universalTree/lg.model.universalTree', // 通用左侧树
+    treeModel: 'model/universalTree/lg.model.treeModel', // 通用左侧树 > 组织树
+    vehicleTree: 'model/universalTree/lg.model.vehicleTree', // 通用左侧树 > 车辆树
+    orgTree: 'model/universalTree/lg.model.orgTree', // 通用左侧树 > 组织树(无checkbox)
     	
-    photographConfig: 'model/ctfo.model.photographConfig', //触发拍照设置
+    photographConfig: 'model/lg.model.photographConfig', //触发拍照设置
   },
   shim: {
     'ligerui_core': ['jquery'],
@@ -80,6 +80,6 @@ require(['jquery', 'domReady', 'ligerui', 'json2', 'sha1', 'cookie', 'validate_m
       menu_tmpl: $('#menu_tmpl'),
       menuContainer: $('body').find('.navbox')
     };
-    CTFO.cache.frame = CTFO.Model.FrameManager.getInstance().init(param);
+    LG.cache.frame = LG.Model.FrameManager.getInstance().init(param);
   });
 });

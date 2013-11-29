@@ -3,9 +3,9 @@
  */
 (function(container) {
     var errorTip = $(container).find('.errorTip');
-    var userName = $.cookie('ctfo_bs_userName');
-    var corpCode = $.cookie('ctfo_bs_corpCode');
-    var userStorageFlag = $.cookie('ctfo_bs_rememberLoginFlag');
+    var userName = $.cookie('LG.bs_userName');
+    var corpCode = $.cookie('LG.bs_corpCode');
+    var userStorageFlag = $.cookie('LG.bs_rememberLoginFlag');
 
     var refreshImgCode = function() {
         $(container).find('.imgCode').attr('src', 'portal/rondamImage.action?d' + new Date().getTime());
@@ -32,13 +32,13 @@
      */
     var storeUser = function(flag, userName, corpCode) {
         if(flag) {
-            $.cookie("ctfo_bs_userName",userName, { path: '/',expires: 30 });
-            $.cookie("ctfo_bs_corpCode",corpCode, { path: '/',expires: 30 });
-            $.cookie("ctfo_bs_rememberLoginFlag", flag,{  path: '/',expires: 30});
+            $.cookie("LG.bs_userName",userName, { path: '/',expires: 30 });
+            $.cookie("LG.bs_corpCode",corpCode, { path: '/',expires: 30 });
+            $.cookie("LG.bs_rememberLoginFlag", flag,{  path: '/',expires: 30});
         } else {
-            $.cookie("ctfo_bs_rememberLoginFlag",null, { path: '/' });
-            $.cookie("ctfo_bs_userName",null, { path: '/' });
-            $.cookie("ctfo_bs_corpCode",null, { path: '/' });
+            $.cookie("LG.bs_rememberLoginFlag",null, { path: '/' });
+            $.cookie("LG.bs_userName",null, { path: '/' });
+            $.cookie("LG.bs_corpCode",null, { path: '/' });
         }
     };
     /**
@@ -69,7 +69,6 @@
         // } else if(!corpCode) {
         //     errorTip.text($(container).find('input[name=corpCode]').attr('title'));
         // }
-        debugger;
         $.ajax({
           url: 'portal/login.action',
           type: 'POST',
@@ -89,7 +88,7 @@
                 errorTip.text('用户权限过期');
                 return false;
             }
-            $.cookie("ctfo_bs_user_info", JSON.stringify(data), { path: '/',expires: 30 });
+            $.cookie("LG.bs_user_info", JSON.stringify(data), { path: '/',expires: 30 });
             window.location.replace("index.html");
           },
           error: function(xhr, textStatus, errorThrown) {

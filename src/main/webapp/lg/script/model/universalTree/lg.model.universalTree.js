@@ -12,11 +12,11 @@
  *        }
  * @return {[type]}   [description]
  */
-CTFO.Model.UniversalTree = (function() {
+LG.Model.UniversalTree = (function() {
 
     var constructor = function (options) {
       var p = {
-          frameHtml: CTFO.config.template.universalTree,
+          frameHtml: LG.config.template.universalTree,
           defaultSelectedTab: 0,
           hadOrgTree: true,
           hadTeamTree: true,
@@ -97,9 +97,9 @@ CTFO.Model.UniversalTree = (function() {
           addMenu();
           bindEvent();
           if (p.hadOrgTree) {
-            orgTree = new CTFO.Model.TreeModel({
-              treeInitUrl: CTFO.config.sources.orgTreeInit,
-              treeSearchUrl: CTFO.config.sources.orgTreeOnlySearch,
+            orgTree = new LG.Model.TreeModel({
+              treeInitUrl: LG.config.sources.orgTreeInit,
+              treeSearchUrl: LG.config.sources.orgTreeOnlySearch,
               treeModelForm: orgTreeForm,
               treeModelContainer: treeContainer,
               treeModelContent: orgTreeContent,
@@ -109,9 +109,9 @@ CTFO.Model.UniversalTree = (function() {
             });
           }
           if (p.hadTeamTree) {
-            teamTree = new CTFO.Model.TreeModel({
-              treeInitUrl: CTFO.config.sources.teamTreeInit,
-              treeSearchUrl: CTFO.config.sources.teamTreeOnlySearch,
+            teamTree = new LG.Model.TreeModel({
+              treeInitUrl: LG.config.sources.teamTreeInit,
+              treeSearchUrl: LG.config.sources.teamTreeOnlySearch,
               treeModelForm: teamTreeForm,
               treeModelContainer: treeContainer,
               treeModelContent: teamTreeContent,
@@ -121,10 +121,10 @@ CTFO.Model.UniversalTree = (function() {
             });
           }
           if (p.hadVehicleTree) {
-            vehicleTree = new CTFO.Model.VehicleTree({
-              treeInitUrl: CTFO.config.sources.teamTreeInit + '?vehicleState=2',
-              treeNodesUrl: CTFO.config.sources.getVehiclesFromTeam,
-              treeSearchUrl: CTFO.config.sources.vehicleTreeOnlySearch,
+            vehicleTree = new LG.Model.VehicleTree({
+              treeInitUrl: LG.config.sources.teamTreeInit + '?vehicleState=2',
+              treeNodesUrl: LG.config.sources.getVehiclesFromTeam,
+              treeSearchUrl: LG.config.sources.vehicleTreeOnlySearch,
               treeModelForm: vehicleTreeForm,
               treeModelContainer: treeContainer,
               treeModelContent: vehicleTreeContent,
@@ -134,9 +134,9 @@ CTFO.Model.UniversalTree = (function() {
             });
           }
           if (p.hadLineTree) {
-            lineTree = new CTFO.Model.TreeModel({
-              treeInitUrl: CTFO.config.sources.lineTreeInit,
-              treeSearchUrl: CTFO.config.sources.lineTreeOnlySearch,
+            lineTree = new LG.Model.TreeModel({
+              treeInitUrl: LG.config.sources.lineTreeInit,
+              treeSearchUrl: LG.config.sources.lineTreeOnlySearch,
               treeModelForm: lineTreeForm,
               treeModelContainer: treeContainer,
               treeModelContent: lineTreeContent,

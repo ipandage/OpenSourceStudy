@@ -1,4 +1,4 @@
-CTFO.Model.TreeModel = (function () {
+LG.Model.TreeModel = (function () {
   // var uniqueInstance;
   // function lazyFunction () {
     // 静态私有变量和方法
@@ -44,7 +44,7 @@ CTFO.Model.TreeModel = (function () {
       var searchTree = function () {
         if (!tree) return false;
         var keyword = p.treeModelForm.find('input[name=keyword]').val();
-        if (!CTFO.utilFuns.commonFuns.validateText(keyword)) {
+        if (!LG.utilFuns.commonFuns.validateText(keyword)) {
           $.ligerDialog.alert('输入关键字有误', '提示', 'error');
           return false;
         }
@@ -120,7 +120,7 @@ CTFO.Model.TreeModel = (function () {
       //   tree = container.ligerTree(options);
       // };
       var setInitSelectedNode = function(treeContainer) {
-        if (+CTFO.cache.user.entId === 1) treeContainer.find('.l-checkbox-unchecked').eq(1).trigger('click');
+        if (+LG.cache.user.entId === 1) treeContainer.find('.l-checkbox-unchecked').eq(1).trigger('click');
         else treeContainer.find('.l-checkbox-unchecked').eq(0).trigger('click');
       };
       /**
@@ -222,7 +222,7 @@ CTFO.Model.TreeModel = (function () {
   // };
 })();
 // 公共,非特权方法
-// CTFO.Model.TreeModel.prototype = {
+// LG.Model.TreeModel.prototype = {
 
 //   init: function (options) {
 //     this.

@@ -1,4 +1,4 @@
-CTFO.Model.VehicleTree = (function () {
+LG.Model.VehicleTree = (function () {
     // 静态私有变量和方法
     var treeDataColumn = {
         text: 'text',
@@ -32,7 +32,7 @@ CTFO.Model.VehicleTree = (function () {
             name : 'searchColumns',
             value : keyword
           }];
-        if (CTFO.utilFuns.commonFuns.validateCharLength(keyword) < 3) {
+        if (LG.utilFuns.commonFuns.validateCharLength(keyword) < 3) {
           $.ligerDialog.alert("关键字至少需3个字符", "提示", "error");
           return false;
         }
@@ -177,7 +177,7 @@ CTFO.Model.VehicleTree = (function () {
         });
       };
       var setInitSelectedNode = function(treeContainer) {
-        if (+CTFO.cache.user.entId === 1) treeContainer.find('.l-checkbox-unchecked').eq(1).trigger('click');
+        if (+LG.cache.user.entId === 1) treeContainer.find('.l-checkbox-unchecked').eq(1).trigger('click');
         else treeContainer.find('.l-checkbox-unchecked').eq(0).trigger('click');
       };
 

@@ -1,5 +1,5 @@
 //操作日志查询
-CTFO.Model.OperationLog = (function(){
+LG.Model.OperationLog = (function(){
     var uniqueInstance;
     function constructor() {
         var p = {};
@@ -23,7 +23,7 @@ CTFO.Model.OperationLog = (function(){
 				align : 'center',
 				render : function(row) {
 					if (!!row.logUtc) {
-		                return CTFO.utilFuns.dateFuns.utc2date(row.logUtc);
+		                return LG.utilFuns.dateFuns.utc2date(row.logUtc);
 		            } else {
 		                return "未知";
 		            }
@@ -80,7 +80,7 @@ CTFO.Model.OperationLog = (function(){
 				render : function(row) {
 					var logTypeid = "未知";
 					 if (null != row.logTypeid && undefined != row.logTypeid && "" != row.logTypeid) {
-					 	logTypeid = CTFO.utilFuns.codeManager.getNameByCode( "SYS_LOG_TYPE", row.logTypeid);
+					 	logTypeid = LG.utilFuns.codeManager.getNameByCode( "SYS_LOG_TYPE", row.logTypeid);
 					 }
 					if (undefined == logTypeid) {
 						logTypeid = "未知";
@@ -99,7 +99,7 @@ CTFO.Model.OperationLog = (function(){
             sortorderParmName : 'requestParam.equal.sortorder',
             columns:gridcolumns,
             sortName : 'logUtc',
-            url : CTFO.config.sources.findOperateLog,
+            url : LG.config.sources.findOperateLog,
             pageSize: pageSize,
             pageSizeOption: pageSizeOption,
             width: '100%',
@@ -119,14 +119,14 @@ CTFO.Model.OperationLog = (function(){
 				label : '查询时间',
 				labelWidth : 60,
 				labelAlign : 'left',
-				initValue : CTFO.utilFuns.dateFuns.dateFormat(new Date(), 'yyyy-MM-dd')
+				initValue : LG.utilFuns.dateFuns.dateFormat(new Date(), 'yyyy-MM-dd')
 			});
 			$(operationLogform).find('input[name=endTime]').ligerDateEditor({
 				showTime : false,
 				label : '至',
 				labelWidth : 30,
 				labelAlign : 'left',
-				initValue : CTFO.utilFuns.dateFuns.dateFormat(new Date(), 'yyyy-MM-dd')
+				initValue : LG.utilFuns.dateFuns.dateFormat(new Date(), 'yyyy-MM-dd')
 			});
 			
             $(operationLogform).find('.searchGrid').click(function(event) {
@@ -158,7 +158,7 @@ CTFO.Model.OperationLog = (function(){
             op = [];
             $(d).each(function(event) {
 				if(this.name == 'startTime' || this.name == 'endTime') {
-              		op.push({name: 'requestParam.equal.' + this.name, value: CTFO.utilFuns.dateFuns.date2utc(this.value)});
+              		op.push({name: 'requestParam.equal.' + this.name, value: LG.utilFuns.dateFuns.date2utc(this.value)});
             	}else if( this.value == ''){
               	//
             	}else{
@@ -183,7 +183,7 @@ CTFO.Model.OperationLog = (function(){
          */
         var setSel = function() {
             var acParentCode = $(operationLogform).find('select[name=logTypeid]');
-            CTFO.utilFuns.codeManager.getSelectList( "SYS_LOG_TYPE", acParentCode);
+            LG.utilFuns.codeManager.getSelectList( "SYS_LOG_TYPE", acParentCode);
         };
 
         /**
@@ -199,7 +199,7 @@ CTFO.Model.OperationLog = (function(){
                 hadLineTree: false,
                 defaultSelectedTab: 0
               };
-              leftTree = new CTFO.Model.UniversalTree(options);
+              leftTree = new LG.Model.UniversalTree(options);
             };
 
         /**

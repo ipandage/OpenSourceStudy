@@ -3,7 +3,7 @@
  * @auth fanshine124@gmail.com                                                                                                alert("初始化codeManager数据失败 " +                e);                                }                                                } [description]
  * @return {[type]}          [description]
  */
-CTFO.Util.CodeManager = (function() {
+LG.Util.CodeManager = (function() {
   var uniqueInstance;
 
   function constructor() {
@@ -14,14 +14,14 @@ CTFO.Util.CodeManager = (function() {
     var queryGeneralCode = function() {
       loaded = false;
       $.ajax({
-        url: CTFO.config.sources.generalCode,
+        url: LG.config.sources.generalCode,
         type: "POST",
         data: {},
         dataType: "json",
         cache: false,
         success: function(data, err) {
           codeCache = (data);
-          CTFO.cache.generalCode = codeCache;
+          LG.cache.generalCode = codeCache;
           loaded = true;
         },
         error: function(e, s) {
@@ -30,10 +30,10 @@ CTFO.Util.CodeManager = (function() {
       });
     };
     var queryAlarmDesc = function() {
-      $.get(CTFO.config.sources.alarmTypeDesc, null, function(data, textStatus, xhr) {
+      $.get(LG.config.sources.alarmTypeDesc, null, function(data, textStatus, xhr) {
         if (data && data.length > 0) {
           $(data).each(function(event) {
-            CTFO.cache.alarmTypeDesc[this.alarmCode] = this.alarmName;
+            LG.cache.alarmTypeDesc[this.alarmCode] = this.alarmName;
           });
         }
       }, 'json');
@@ -45,7 +45,7 @@ CTFO.Util.CodeManager = (function() {
         return this;
       },
       getAlarmDesc: function(code) {
-        return CTFO.cache.alarmTypeDesc[code] || '';
+        return LG.cache.alarmTypeDesc[code] || '';
 
       },
       /**
@@ -61,7 +61,7 @@ CTFO.Util.CodeManager = (function() {
         }
         if (!code) return false;
         $.ajax({
-          url: CTFO.config.sources.alarmLevel,
+          url: LG.config.sources.alarmLevel,
           type: 'POST',
           dataType: 'json',
           data: {'requestParam.equal.levelId': code},
@@ -70,7 +70,7 @@ CTFO.Util.CodeManager = (function() {
           },
           success: function(data, textStatus, xhr) {
             if(!!data) {
-                CTFO.cache.alarmType[code] = data;
+                LG.cache.alarmType[code] = data;
                 if (callback) callback(data, param);
             }
           },
@@ -81,7 +81,7 @@ CTFO.Util.CodeManager = (function() {
       },
       // TODO 考虑是否提供直接渲染告警类型dom的方法
       // compileAlarmTypeDom: function(code, fillObj, callback) {
-      //   var data = CTFO.cache.alarmLevel[code];
+      //   var data = LG.cache.alarmLevel[code];
       //   if (data) {
       //     this.compileAlarmTypeHtml(data, fillObj);
       //   } else {
@@ -287,7 +287,7 @@ CTFO.Util.CodeManager = (function() {
 /**
  * [Date 日期转换函数集合]
  */
-CTFO.Util.Date = function() {
+LG.Util.Date = function() {
   /*
    * DATE时间格式化 创建时间：2011/11/22 10:12 创建者：zhangming
    *
@@ -386,7 +386,7 @@ CTFO.Util.Date = function() {
 /**
  * [CommonFuns 通用函数集合]
  */
-CTFO.Util.CommonFuns = function() {
+LG.Util.CommonFuns = function() {
   /**
    * [validateCharLength 判断中英文混合字符串的长度]
    * @param  {[String]} str [传入的参数]
@@ -785,9 +785,9 @@ CTFO.Util.CommonFuns = function() {
    * @return {[type]}         [description]
    */
   this.initScheduleMessage = function(fillObj) {
-    if(!CTFO.cache.schedulePreMessage || CTFO.cache.schedulePreMessage.length < 1) return false;
+    if(!LG.cache.schedulePreMessage || LG.cache.schedulePreMessage.length < 1) return false;
     var options = [];
-    $(CTFO.cache.schedulePreMessage).each(function(event) {
+    $(LG.cache.schedulePreMessage).each(function(event) {
       var op = "<option value='" + this.msgBody + "' >" + this.msgIdx + "</option>";
       options.push(op);
     });
@@ -809,28 +809,28 @@ CTFO.Util.CommonFuns = function() {
 /**
  * [Commands 指令下发函数集合对象]
  */
-CTFO.Util.Commands = function() {
+LG.Util.Commands = function() {
   this.sendCommands = function(ctype, qp, cp) {
     if (!ctype) return false;
     var url = '';
     switch(ctype) {
       case 'message':
-        url = (cp.isBatchMessage ? CTFO.config.sources.batchMessageCommand : CTFO.config.sources.singleMessageCommand);
+        url = (cp.isBatchMessage ? LG.config.sources.batchMessageCommand : LG.config.sources.singleMessageCommand);
         break;
       case 'photo':
-        url = CTFO.config.sources.photoCommand;
+        url = LG.config.sources.photoCommand;
         break;
       case 'calling':
-        url = CTFO.config.sources.callingCommand;
+        url = LG.config.sources.callingCommand;
         break;
       case 'taping':
-        url = CTFO.config.sources.tapingCommand;
+        url = LG.config.sources.tapingCommand;
         break;
       case 'tracking':
-        url = CTFO.config.sources.emphasisCommand;
+        url = LG.config.sources.emphasisCommand;
         break;
       case 'checkroll':
-        url = CTFO.config.sources.checkrollCommand;
+        url = LG.config.sources.checkrollCommand;
         break;
     }
     $.get(url, qp, function(data, textStatus, xhr) {
@@ -838,7 +838,7 @@ CTFO.Util.Commands = function() {
     }, 'json');
   };
   this.getCommandStatus = function(seq, fillObj) {
-    $.get(CTFO.config.sources.commandStatus, {"requestParam.equal.coSeq": seq}, function(data, textStatus, xhr) {
+    $.get(LG.config.sources.commandStatus, {"requestParam.equal.coSeq": seq}, function(data, textStatus, xhr) {
       if (data && data.error) return false;
       else $(fillObj).html(data[0].seq);
     }, 'json');
@@ -853,7 +853,7 @@ CTFO.Util.Commands = function() {
  * @return {[type]}                [description]
  * @ version 2.0
  */
-// CTFO.Util.throttle = function(fn, delay, mustRunDelay) {
+// LG.Util.throttle = function(fn, delay, mustRunDelay) {
 //   var timer = null;
 //   var t_start;
 //   return function() {
@@ -875,7 +875,7 @@ CTFO.Util.Commands = function() {
 //   };
 // };
 // version 3.0
-CTFO.Util.throttle = function(fn, delay, mustRunDelay){
+LG.Util.throttle = function(fn, delay, mustRunDelay){
     var throttle = {
         timer: null,
         t_start: 0,
@@ -915,7 +915,7 @@ CTFO.Util.throttle = function(fn, delay, mustRunDelay){
  * @param {[Object]} p [参数对象]
  * @return {[Object]} [地图对象封装]
  */
-CTFO.Util.Map = function(p) {
+LG.Util.Map = function(p) {
   var defaults = {
     center: 'beijing',
     level: 4
@@ -1660,7 +1660,7 @@ CTFO.Util.Map = function(p) {
  * @param {[Object]} options [参数对象]
  * @return {[Object]} [地图工具条对象封装]
  */
-CTFO.Util.MapTool = function(options) {
+LG.Util.MapTool = function(options) {
   var test = '';
   var map = null;
   var activeButton = null;
@@ -1910,7 +1910,7 @@ CTFO.Util.MapTool = function(options) {
  *          //发布者
  *          adultTv.trigger('play', {'name': '麻生希'})
  */
-CTFO.Util.Events = function() {
+LG.Util.Events = function() {
   var listen, log, obj, one, remove, trigger, __this;
   obj = {};
   __this = this;
@@ -1958,7 +1958,7 @@ CTFO.Util.Events = function() {
  * @return {[Object]} [消息列表组件对象]
  */
 (function($) {
-  $.fn.applyCtfoMessageListBox = function(p) {
+  $.fn.applyLGMessageListBox = function(p) {
     var defaults = {
       htmlFrame: 'model/template/message_list_box.htm',
       header: true,
@@ -1994,7 +1994,7 @@ CTFO.Util.Events = function() {
 })(jQuery);
 
 /**
- * [applyCtfoWindow 加载弹窗,top/left/bottom/right只需传入一对值,例如top,left]
+ * [applyLG.indow 加载弹窗,top/left/bottom/right只需传入一对值,例如top,left]
  * @param  {[Object]} p [参数对象]
  * @param {[Number]} p.width [宽度]
  * @param {[Number]} p.height [高度]
@@ -2013,7 +2013,7 @@ CTFO.Util.Events = function() {
  * @return {[Null]}   [description]
  */
 (function($) {
-  $.fn.applyCtfoWindow = function(p) {
+  $.fn.applyLGWindow = function(p) {
     var defaults = {
       htmlFrame: 'model/template/window.html',
       title: '提示信息',
@@ -2163,9 +2163,9 @@ CTFO.Util.Events = function() {
 
       };
       g.loading();
-      // if (this.id == undefined || this.id == "") this.id = "CTFO_UI_" +
+      // if (this.id == undefined || this.id == "") this.id = "LG.UI_" +
       // new Date().getTime();
-      // CTFO.Util.UIManagers[this.id + "_Window"] = g;
+      // LG.Util.UIManagers[this.id + "_Window"] = g;
     });
   };
 })(jQuery);

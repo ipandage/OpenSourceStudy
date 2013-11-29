@@ -1,4 +1,4 @@
-/*global CTFO: true, $: true */
+/*global LG. true, $: true */
 /* devel: true, white: false */
 
 /**
@@ -8,7 +8,7 @@
  * @return Object {}
  */
 
-CTFO.Model.FrameManager = (function(){
+LG.Model.FrameManager = (function(){
     var uniqueInstance;
     function constructor() {
         var p = {};
@@ -19,11 +19,11 @@ CTFO.Model.FrameManager = (function(){
         /**
          * [getUserInfo 获取用户登录信息]
          * @param  {[String]} userid [用户id]
-         * @return {[Null]}        [返回数据赋值给全局缓存CTFO.cache.user对象]
+         * @return {[Null]}        [返回数据赋值给全局缓存LG.cache.user对象]
          */
         var getUserInfo = function(userid) {
             $.ajax({
-                url : CTFO.config.sources.userInfo,
+                url : LG.config.sources.userInfo,
                 type : 'GET',
                 data : {
                     userid : userid
@@ -32,7 +32,7 @@ CTFO.Model.FrameManager = (function(){
                 success : function(d) {
                     if (d) {
                         // alert('查询用户登录信息成功!');
-                        CTFO.cache.user = d;
+                        LG.cache.user = d;
                     }
                 },
                 error : function(err) {
@@ -49,7 +49,7 @@ CTFO.Model.FrameManager = (function(){
          */
         var getUserMenu = function(userid, f) {
             $.ajax({
-                url : CTFO.config.sources.menuList,
+                url : LG.config.sources.menuList,
                 type : 'POST',
                 data : {
                     userid : userid
@@ -157,7 +157,7 @@ CTFO.Model.FrameManager = (function(){
             // });
             $(subContent).appendTo(p.contentDiv);
             $(subContent).load(url, {}, function() {
-                var nf = (new Function('return ' + CTFO.config.modelNames[mid] + '.getInstance()'))();
+                var nf = (new Function('return ' + LG.config.modelNames[mid] + '.getInstance()'))();
                 var param = {
                     mid: mid,
                     cWidth: contentWidth,
@@ -191,15 +191,15 @@ CTFO.Model.FrameManager = (function(){
         };
         /**
          * [initLoginInfo 初始化用户信息和权限信息]
-         * @return {[Null]} [无返回,实际对CTFO.cache.user和CTFO.cache.auth对象赋了值]
+         * @return {[Null]} [无返回,实际对LG.cache.user和LG.cache.auth对象赋了值]
          */
         var initLoginInfo = function(callback) {
-            var userInfo = $.cookie("ctfo_bs_user_info");
-            if(userInfo) CTFO.cache.user = JSON.parse(userInfo);
-            compileLoginInfo(CTFO.cache.user);
+            var userInfo = $.cookie("LG.bs_user_info");
+            if(userInfo) LG.cache.user = JSON.parse(userInfo);
+            compileLoginInfo(LG.cache.user);
             // 权限信息
             $.ajax({
-              url: CTFO.config.sources.auth,
+              url: LG.config.sources.auth,
               type: 'POST',
               dataType: 'json',
               data: {},
@@ -212,7 +212,7 @@ CTFO.Model.FrameManager = (function(){
                         if(err) $.ligerDialog.error(err);
                         if(window.location.href !== "login.html") window.location.href = "login.html";
                     } else {
-                        CTFO.cache.auth = data;
+                        LG.cache.auth = data;
                         if(callback) callback();
                     }
               },
@@ -230,7 +230,7 @@ CTFO.Model.FrameManager = (function(){
             var opEndutc = userInfo.opEndutc;
             var validityTimeStr = '永久有效';
             if(!!opEndutc) {
-                validityTimeStr = CTFO.utilFuns.dateFuns.dateFormat(new Date(opEndutc), 'yyyy-MM-dd');
+                validityTimeStr = LG.utilFuns.dateFuns.dateFormat(new Date(opEndutc), 'yyyy-MM-dd');
                 // var opEndutc = validityTime + 86400000;
                 var nowUtc = new Date().getTime();
                 if((opEndutc > nowUtc) && ((opEndutc - nowUtc) < (5 * 24 * 3600 * 1000))) {
@@ -258,8 +258,8 @@ CTFO.Model.FrameManager = (function(){
          * @return {[type]} [description]
          */
         var modifyPassword = function() {
-            CTFO.utilFuns.tipWindow({
-              url : CTFO.config.template.passwordModify,
+            LG.utilFuns.tipWindow({
+              url : LG.config.template.passwordModify,
               title : '修改密码',
               width : 400,
               height : 180,
@@ -289,7 +289,7 @@ CTFO.Model.FrameManager = (function(){
                         "retNewPassword" : hex_sha1(newPwRepeat)
                       };
                       $.ajax({
-                        url: CTFO.config.sources.passwordModify,
+                        url: LG.config.sources.passwordModify,
                         type: 'POST',
                         dataType: 'json',
                         data: param,
@@ -325,7 +325,7 @@ CTFO.Model.FrameManager = (function(){
             $.ligerDialog.confirm('是否注销登陆?', function(yes) {
                 if(yes) {
                     $.ajax({
-                        url: CTFO.config.sources.logout,
+                        url: LG.config.sources.logout,
                         type: 'POST',
                         dataType: 'json',
                         data: {param1: 'value1'},
@@ -356,7 +356,7 @@ CTFO.Model.FrameManager = (function(){
                 width: 600,
                 height: 400
             };
-            CTFO.utilFuns.tipWindow(param);
+            LG.utilFuns.tipWindow(param);
         };
         /**
          * [commitLog 操作日志弹窗]
@@ -367,14 +367,14 @@ CTFO.Model.FrameManager = (function(){
               var param = {
                 icon:'ico227',
                 title :'操作日志',
-                url: CTFO.config.template.commitLog,
+                url: LG.config.template.commitLog,
                 width:850,
                 height: 400,
                 onLoad: function(w, d, g) {
-                  CTFO.Model.CommitLog.getInstance().init({winObj: w, dataObj: d});
+                  LG.Model.CommitLog.getInstance().init({winObj: w, dataObj: d});
                 }
               };
-              CTFO.utilFuns.tipWindow(param);
+              LG.utilFuns.tipWindow(param);
             });
         };
         /**
@@ -382,30 +382,28 @@ CTFO.Model.FrameManager = (function(){
          * @return {[type]} [description]
          */
         var initUtilFuns = function() {
-          // 通用编码器
-          CTFO.utilFuns.codeManager = CTFO.Util.CodeManager.getInstance().init();
           // 弹窗
-          CTFO.utilFuns.tipWindow = function(p) {
+          LG.utilFuns.tipWindow = function(p) {
               p = p || {};
               if (p.url || p.content) {
                   var window = $('<div>');
-                  $(window).applyCtfoWindow($.extend({}, p));
+                  $(window).applyLG.indow($.extend({}, p));
               }
           };
-          CTFO.utilFuns.dateFuns = new CTFO.Util.Date();
-          CTFO.utilFuns.throttle = CTFO.Util.throttle;
+          LG.utilFuns.dateFuns = new LG.Util.Date();
+          LG.utilFuns.throttle = LG.Util.throttle;
           //通用函数
-          CTFO.utilFuns.commonFuns = new CTFO.Util.CommonFuns();
+          LG.utilFuns.commonFuns = new LG.Util.CommonFuns();
           // 指令下发函数
-          CTFO.utilFuns.commandFuns = new CTFO.Util.Commands();
+          LG.utilFuns.commandFuns = new LG.Util.Commands();
         };
         /**
          * [initUtilCache 初始化通用预加载信息]
          * @return {[type]} [description]
          */
         var initUtilCache = function() {
-          $.get(CTFO.config.sources.preMessage, null, function(data, textStatus, xhr) {
-            CTFO.cache.schedulePreMessage = data;
+          $.get(LG.config.sources.preMessage, null, function(data, textStatus, xhr) {
+            LG.cache.schedulePreMessage = data;
           }, 'json');
 
         };
@@ -425,7 +423,7 @@ CTFO.Model.FrameManager = (function(){
             init: function(options) {
                 var that = this;
                 p = $.extend({}, p || {}, options || {});
-                //initUtilFuns(); TODO
+                initUtilFuns(); 
                 initUtilCache();
                 //initLoginInfo(function() { TODO
                     initMenu();
@@ -433,7 +431,7 @@ CTFO.Model.FrameManager = (function(){
                 commitLog();
                 resize();
                 $(window).resize(function() {
-                    // CTFO.utilFuns.throttle(resize, 50, 100);
+                    // LG.utilFuns.throttle(resize, 50, 100);
                     that.resize();
                 });
 

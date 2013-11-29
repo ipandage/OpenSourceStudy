@@ -1,5 +1,5 @@
 // 单体示例
-CTFO.Model.Template = (function(){
+LG.Model.Template = (function(){
     var uniqueInstance;
     function constructor() {
         var p = {};
@@ -55,7 +55,7 @@ CTFO.Model.Template = (function(){
 })();
 
 // 封装示例
-CTFO.Model.Template2 = (function () {
+LG.Model.Template2 = (function () {
   // 静态私有变量和方法
   var test = 'test';
   var testFunction = function() {
@@ -76,7 +76,7 @@ CTFO.Model.Template2 = (function () {
   return constructor;
 })();
 // 公共,非特权方法
-CTFO.Model.Template2.prototype = {
+LG.Model.Template2.prototype = {
   testPublic: function () {
     alert('public');
   }

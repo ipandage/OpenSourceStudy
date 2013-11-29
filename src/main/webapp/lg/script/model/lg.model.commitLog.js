@@ -1,11 +1,11 @@
-/*global CTFO: true, $: true */
+/*global LG. true, $: true */
 /* devel: true, white: false */
 
 /**
  * [ 操作日志功能模块包装器]                                                                                            if(!!data [description]
  * @return {[type]}             [description]
  */
-CTFO.Model.CommitLog = (function() {
+LG.Model.CommitLog = (function() {
   var uniqueInstance;
 
   function constructor() {
@@ -21,7 +21,7 @@ CTFO.Model.CommitLog = (function() {
      */
     var initSelectOptions = function() {
       $.ajax({
-        url: CTFO.config.sources.commandStatusCode,
+        url: LG.config.sources.commandStatusCode,
         type: 'POST',
         dataType: 'json',
         data: {},
@@ -39,7 +39,7 @@ CTFO.Model.CommitLog = (function() {
         }
       });
       $.ajax({
-        url: CTFO.config.sources.commandType,
+        url: LG.config.sources.commandType,
         type: 'POST',
         dataType: 'json',
         data: {},
@@ -80,14 +80,14 @@ CTFO.Model.CommitLog = (function() {
         label : '开始时间',
         labelWidth : 60,
         labelAlign : 'left',
-        initValue : CTFO.utilFuns.dateFuns.dateFormat(new Date(), 'yyyy-MM-dd') + ' 00:00:00'
+        initValue : LG.utilFuns.dateFuns.dateFormat(new Date(), 'yyyy-MM-dd') + ' 00:00:00'
       });
       $(p.winObj).find('input[name=endTime]').ligerDateEditor({
         showTime : true,
         label : '至',
         labelWidth : 30,
         labelAlign : 'left',
-        initValue : CTFO.utilFuns.dateFuns.dateFormat(new Date(), 'yyyy-MM-dd hh:mm:ss')
+        initValue : LG.utilFuns.dateFuns.dateFormat(new Date(), 'yyyy-MM-dd hh:mm:ss')
       });
       $(p.winObj).find('.queryButton').click(function(event) {
         searchGrid();
@@ -109,7 +109,7 @@ CTFO.Model.CommitLog = (function() {
         op = [];
       $(d).each(function(event) {
         if(this.name == 'startTime' || this.name == 'endTime') {
-          op.push({name: 'requestParam.equal.' + this.name, value: CTFO.utilFuns.dateFuns.date2utc(this.value)});
+          op.push({name: 'requestParam.equal.' + this.name, value: LG.utilFuns.dateFuns.date2utc(this.value)});
         } else {
           op.push({name: 'requestParam.equal.' + this.name, value: this.value});
         }
@@ -162,7 +162,7 @@ CTFO.Model.CommitLog = (function() {
             width : 150,
             render : function(row)
             {
-                return row.coSutc ? CTFO.utilFuns.dateFuns.dateFormat(new Date(+row.coSutc), 'yyyy-MM-dd hh:mm:ss') : '';
+                return row.coSutc ? LG.utilFuns.dateFuns.dateFormat(new Date(+row.coSutc), 'yyyy-MM-dd hh:mm:ss') : '';
             }
         }, {
             display : '指令反馈时间',
@@ -170,7 +170,7 @@ CTFO.Model.CommitLog = (function() {
             width : 150,
             render : function(row)
             {
-                return row.crTime ? CTFO.utilFuns.dateFuns.dateFormat(new Date(+row.crTime), 'yyyy-MM-dd hh:mm:ss') : '';
+                return row.crTime ? LG.utilFuns.dateFuns.dateFormat(new Date(+row.crTime), 'yyyy-MM-dd hh:mm:ss') : '';
             }
         }, {
             display : '指令描述',
@@ -180,7 +180,7 @@ CTFO.Model.CommitLog = (function() {
         } ],
         delayLoad : true,
         sortName : 'vehicleNo',
-        url : CTFO.config.sources.commitLog,
+        url : LG.config.sources.commitLog,
         pageSize : pageSize,
         pageSizeOptions : pageSizeOptions,
         width : '100%',

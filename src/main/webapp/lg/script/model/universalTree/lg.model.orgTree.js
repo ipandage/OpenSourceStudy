@@ -1,4 +1,4 @@
-CTFO.Model.OrgTree = (function () {
+LG.Model.OrgTree = (function () {
     // 静态私有变量和方法
     var treeDataColumn = {
         text: 'text',

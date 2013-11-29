@@ -1,6 +1,6 @@
-var CTFO = window.CTFO || {};
+var LG = window.LG|| {};
 // 缓存
-CTFO.cache = {
+LG.cache = {
   user : {}, // 用户信息
   auth : {}, // 权限信息
   menu : {}, // 用户权限下的菜单列表
@@ -18,7 +18,7 @@ CTFO.cache = {
 };
 
 // 全局变量定义/全局对象引用
-CTFO.config = {
+LG.config = {
   globalObject: {
     addMarkerFinishedFlag: true, // 批量加marker结束标识
     terminalType: '', // 终端类型
@@ -218,13 +218,13 @@ CTFO.config = {
   },
   // 模块处理对象名称定义
   modelNames: {
-    homePage : 'CTFO.Model.HomePage', // 首页
-    monitor : 'CTFO.Model.VehicleMonitor', // 实时监控
-    fencing : 'CTFO.Model.Fencing', //围栏管理
+    homePage : 'LG.Model.HomePage', // 首页
+    monitor : 'LG.Model.VehicleMonitor', // 实时监控
+    fencing : 'LG.Model.Fencing', //围栏管理
    
-    photographConfig : 'CTFO.Model.PhotographConfig', // 触发拍照设置
+    photographConfig : 'LG.Model.PhotographConfig', // 触发拍照设置
    
-    operationLog : 'CTFO.Model.OperationLog', //操作日志查询
+    operationLog : 'LG.Model.OperationLog', //操作日志查询
 
   },
 
@@ -245,7 +245,7 @@ CTFO.config = {
   }
 };
 
-CTFO.utilFuns = {
+LG.utilFuns = {
   codeManager : null, // 通用编码
   commandFuns : null, // 指令发送
   cMap : null,
@@ -256,6 +256,6 @@ CTFO.utilFuns = {
   treeManager : {}
 };
 
-CTFO.Model = {};
+LG.Model = {};
 
-CTFO.Util = {};
+LG.Util = {};

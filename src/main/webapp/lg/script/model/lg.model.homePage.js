@@ -1,10 +1,10 @@
-/*global CTFO: true, $: true */
+/*global LG. true, $: true */
 /* devel: true, white: false */
 /**
  * [ 首页功能模块包装器]
  * @return {[type]}     [description]
  */
-CTFO.Model.HomePage = (function() {
+LG.Model.HomePage = (function() {
   var uniqueInstance;
 
   function constructor() {
@@ -24,16 +24,16 @@ CTFO.Model.HomePage = (function() {
      * @return {[Null]}            [无返回]
      */
     var initBoxContent = function() {
-        if(!CTFO.cache.user.entId) return false;
-        var entId = CTFO.cache.user.entId;
-        var opProvince = CTFO.cache.user.opProvince;
+        if(!LG.cache.user.entId) return false;
+        var entId = LG.cache.user.entId;
+        var opProvince = LG.cache.user.opProvince;
         var boxList = [{ // 企业资讯
-          url: CTFO.config.sources.corpNews,
+          url: LG.config.sources.corpNews,
           param: {
             infoType: '02',
             entId: entId
           },
-          tmpl: CTFO.config.scriptTemplate.corpNewsTmpl,
+          tmpl: LG.config.scriptTemplate.corpNewsTmpl,
           tmplContainer: $(p.mainContainer).find('.corpNewsContent'),
           boxContainer: $(p.mainContainer).find('.corpNews'),
           fn_query: function(d, tmpl, tmplContainer, boxContainer, fn_bind) {
@@ -43,11 +43,11 @@ CTFO.Model.HomePage = (function() {
             bindCorpNewsBoxEvent(boxContainer);
           }
         }, { // 车辆节能排行
-          url: CTFO.config.sources.vehicleRanking,
+          url: LG.config.sources.vehicleRanking,
           param: {
             entId: entId
           },
-          tmpl: CTFO.config.scriptTemplate.vehicleRankingTmpl,
+          tmpl: LG.config.scriptTemplate.vehicleRankingTmpl,
           tmplContainer: $(p.mainContainer).find('.vehicleRankingContent'),
           boxContainer: $(p.mainContainer).find('.vehicleRanking'),
           fn_query: function(d, tmpl, tmplContainer, boxContainer, fn_bind) {
@@ -57,11 +57,11 @@ CTFO.Model.HomePage = (function() {
             //bindVehicleRankingEvent(boxContainer);
           }
         }, { // 车队节能排行
-          url: CTFO.config.sources.vehicleTeamRanking,
+          url: LG.config.sources.vehicleTeamRanking,
           param: {
             entId: entId
           },
-          tmpl: CTFO.config.scriptTemplate.vehicleTeamRankingTmpl,
+          tmpl: LG.config.scriptTemplate.vehicleTeamRankingTmpl,
           tmplContainer: $(p.mainContainer).find('.vehicleTeamRankingContent'),
           boxContainer: $(p.mainContainer).find('.vehicleRanking'),
           fn_query: function(d, tmpl, tmplContainer, boxContainer, fn_bind) {
@@ -71,12 +71,12 @@ CTFO.Model.HomePage = (function() {
             //bindVehicleTeamRankingEvent(boxContainer);
           }
         }, { // 系统公告
-          url: CTFO.config.sources.systemNotice,
+          url: LG.config.sources.systemNotice,
           param: {
             infoType: '01',
             entId: entId
           },
-          tmpl: CTFO.config.scriptTemplate.systemNoticeTmpl,
+          tmpl: LG.config.scriptTemplate.systemNoticeTmpl,
           tmplContainer: $(p.mainContainer).find('.systemNoticeContent'),
           boxContainer: $(p.mainContainer).find('.systemNotice'),
           fn_query: function(d, tmpl, tmplContainer, boxContainer, fn_bind) {
@@ -86,11 +86,11 @@ CTFO.Model.HomePage = (function() {
             bindSystemNoticeEvent(boxContainer);
           }
         }, { // 信息反馈
-          url: CTFO.config.sources.messageList,
+          url: LG.config.sources.messageList,
           param: {
             entId: entId
           },
-          tmpl: CTFO.config.scriptTemplate.messageListTmpl,
+          tmpl: LG.config.scriptTemplate.messageListTmpl,
           tmplContainer: $(p.mainContainer).find('.messageList'),
           boxContainer: $(p.mainContainer).find('.messageList'),
           fn_query: function(d, tmpl, tmplContainer, boxContainer, fn_bind) {
@@ -100,11 +100,11 @@ CTFO.Model.HomePage = (function() {
             bindMessageListEvent(boxContainer);
           }
         }, { // 我的提问列表
-          url: CTFO.config.sources.questionList,
+          url: LG.config.sources.questionList,
           param: {
             entId: entId
           },
-          tmpl: CTFO.config.scriptTemplate.questionListTmpl,
+          tmpl: LG.config.scriptTemplate.questionListTmpl,
           tmplContainer: $(p.mainContainer).find('.questionList'),
           boxContainer: $(p.mainContainer).find('.questionList'),
           fn_query: function(d, tmpl, tmplContainer, boxContainer, fn_bind) {
@@ -114,11 +114,11 @@ CTFO.Model.HomePage = (function() {
             bindQuestionListEvent(boxContainer);
           }
         }, { // 路况
-          url: CTFO.config.sources.traffic,
+          url: LG.config.sources.traffic,
           param: {
             provinceCodes: opProvince
           },
-          tmpl: CTFO.config.scriptTemplate.trafficTmpl,
+          tmpl: LG.config.scriptTemplate.trafficTmpl,
           tmplContainer: $(p.mainContainer).find('.trafficContent'),
           boxContainer: $(p.mainContainer).find('.traffic'),
           fn_query: function(d, tmpl, tmplContainer, boxContainer, fn_bind) {
@@ -186,11 +186,11 @@ CTFO.Model.HomePage = (function() {
      */
     var initStatisticNum = function() {
         $.ajax({
-          url: CTFO.config.sources.enterpriseStatistic,
+          url: LG.config.sources.enterpriseStatistic,
           type: 'POST',
           dataType: 'json',
           data: {
-            entId: CTFO.cache.user.entId
+            entId: LG.cache.user.entId
           },
           complete: function(xhr, textStatus) {
             //called when complete
@@ -239,7 +239,7 @@ CTFO.Model.HomePage = (function() {
      */
     var initStatisticChartShowTypes = function() {
         $.ajax({
-          url: CTFO.config.sources.alarmStatisticShowType,
+          url: LG.config.sources.alarmStatisticShowType,
           type: 'POST',
           dataType: 'json',
           data: null,
@@ -303,11 +303,11 @@ CTFO.Model.HomePage = (function() {
      */
     var initStatisticChart = function() {
         $.ajax({
-          url: CTFO.config.sources.alarmStatistic,
+          url: LG.config.sources.alarmStatistic,
           type: 'POST',
           dataType: 'json',
           data: {
-            entId: CTFO.cache.user.entId,
+            entId: LG.cache.user.entId,
             alarmNumType: timeType
           },
           complete: function(xhr, textStatus) {
@@ -451,7 +451,7 @@ CTFO.Model.HomePage = (function() {
               height: param.height,
               onLoad: param.onLoad
             };
-            CTFO.utilFuns.tipWindow(p);
+            LG.utilFuns.tipWindow(p);
 
           },
           error: function(xhr, textStatus, errorThrown) {
@@ -476,8 +476,8 @@ CTFO.Model.HomePage = (function() {
             param = {
               id: id,
               title: '企业资讯',
-              template: CTFO.config.template.messageDetail,
-              url: CTFO.config.sources.corpNewDetail
+              template: LG.config.template.messageDetail,
+              url: LG.config.sources.corpNewDetail
             };
           showDetail(param);
         });
@@ -497,8 +497,8 @@ CTFO.Model.HomePage = (function() {
     //             param = {
     //                 id: id,
     //                 title: '企业资讯',
-    //                 template: CTFO.config.template.corpNewDetail,
-    //                 url: CTFO.config.sources.messageDetail
+    //                 template: LG.config.template.corpNewDetail,
+    //                 url: LG.config.sources.messageDetail
     //             };
     //         showDetail(param);
     //     });
@@ -517,8 +517,8 @@ CTFO.Model.HomePage = (function() {
             param = {
               id: id,
               title: '系统公告',
-              template: CTFO.config.template.messageDetail,
-              url: CTFO.config.sources.systemNoticeDetail,
+              template: LG.config.template.messageDetail,
+              url: LG.config.sources.systemNoticeDetail,
               width: 650,
               height: 370,
               onLoad: function(w, v) {
@@ -550,8 +550,8 @@ CTFO.Model.HomePage = (function() {
             param = {
               replyId: id,
               title: '信息反馈',
-              template: CTFO.config.template.messageDetail,
-              url: CTFO.config.sources.messageDetail,
+              template: LG.config.template.messageDetail,
+              url: LG.config.sources.messageDetail,
               width: 650,
               height: 370,
               onLoad: function(w, v) { // ERROR 减少id的使用
@@ -579,7 +579,7 @@ CTFO.Model.HomePage = (function() {
             title: "提问",
             width: 543,
             height: 370,
-            url: CTFO.config.template.myQuestion,
+            url: LG.config.template.myQuestion,
             onLoad: function(w, d) {
               //加载表格数据
               $(w).find("#retQuestion").click(function() {
@@ -588,7 +588,7 @@ CTFO.Model.HomePage = (function() {
                   $.ligerDialog.error("请输入您的问题！");
                   return;
                 }
-                if(CTFO.utilFuns.commonFuns.validateCharLength(retTitle) > 120) {
+                if(LG.utilFuns.commonFuns.validateCharLength(retTitle) > 120) {
                   $.ligerDialog.error("请不要超过六十个字符！");
                   return;
                 }
@@ -596,7 +596,7 @@ CTFO.Model.HomePage = (function() {
                 retTitle = retTitle.replace(/\n/g, " ");
                 //保存问题数据到后台
                 $.ajax({
-                  url: CTFO.config.sources.question,
+                  url: LG.config.sources.question,
                   type: 'GET',
                   dataType: 'json',
                   data: {
@@ -619,7 +619,7 @@ CTFO.Model.HomePage = (function() {
               });
             }
           };
-          CTFO.utilFuns.tipWindow(p);
+          LG.utilFuns.tipWindow(p);
         }).end().find('li > a').click(function(event) {
           var id = $(this).attr('rid'),
             cName = $(this).attr('rname'),
@@ -627,8 +627,8 @@ CTFO.Model.HomePage = (function() {
             param = {
               replyId: id,
               title: '问题信息',
-              template: CTFO.config.template.messageDetail,
-              url: CTFO.config.sources.messageDetail,
+              template: LG.config.template.messageDetail,
+              url: LG.config.sources.messageDetail,
               width: 650,
               height: 370,
               onLoad: function(w, v) {
@@ -666,7 +666,7 @@ CTFO.Model.HomePage = (function() {
               initTrafficGrid(w, param);
             }
           };
-          CTFO.utilFuns.tipWindow(p);
+          LG.utilFuns.tipWindow(p);
         }).end().find('li > div > a').click(function(event) {
           var title = $(this).attr('title');
           var p = {
@@ -675,7 +675,7 @@ CTFO.Model.HomePage = (function() {
             height: 370,
             content: '<div class="kcptWindow_main"><div class="kcptWindow_main_text">' + title + '</div></div><div class="kcptWindow_bottom"><div class="kcptWindow_bottom_middle"></div></div>'
           };
-          CTFO.utilFuns.tipWindow(p);
+          LG.utilFuns.tipWindow(p);
         });
       };
     /**
@@ -700,7 +700,7 @@ CTFO.Model.HomePage = (function() {
             width: 180
           }],
           sortName: '',
-          url: CTFO.config.sources.trafficMore,
+          url: LG.config.sources.trafficMore,
           parms: [{
             name: 'provinceCodes',
             value: param.provinceCode

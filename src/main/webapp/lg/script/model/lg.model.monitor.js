@@ -1,4 +1,4 @@
-CTFO.Model.VehicleMonitor = (function() {
+LG.Model.VehicleMonitor = (function() {
   var uniqueInstance;
 
   function constructor() {
@@ -114,7 +114,7 @@ CTFO.Model.VehicleMonitor = (function() {
             center: c,
             level: l
           };
-        cMap = new CTFO.Util.Map(param);
+        cMap = new LG.Util.Map(param);
         cMap.addMapControl();
         cMap.addScaleControl();
         cMap.addOverviewMapControl(false);
@@ -131,7 +131,7 @@ CTFO.Model.VehicleMonitor = (function() {
               maptoolContainer: mapToolContainer,
               cMap: cMap.map
             },
-          mapToolObj = new CTFO.Util.MapTool(mtParam);
+          mapToolObj = new LG.Util.MapTool(mtParam);
 
         var extendButtons = [{
           buttonType: 'saveHorizonButton',
@@ -232,10 +232,10 @@ CTFO.Model.VehicleMonitor = (function() {
      */
     var initClusterMap = function() {
         var config = {
-          baseUrl: CTFO.config.sources.clusterUrl,
+          baseUrl: LG.config.sources.clusterUrl,
           map: cMap.map,
           type: '',
-          nodeids: CTFO.cache.user.entId,
+          nodeids: LG.cache.user.entId,
           alarmcodes: '',
           large: 0,
           cluster: 0
@@ -251,22 +251,22 @@ CTFO.Model.VehicleMonitor = (function() {
      * @return {[type]}            [description]
      */
     var queryVehicleLatestStatusData = function(vidStr, op, callback) {
-      CTFO.config.globalObject.addMarkerFinishedFlag = false;
+      LG.config.globalObject.addMarkerFinishedFlag = false;
       $.ajax({
-        url: CTFO.config.sources.latestPosition,
+        url: LG.config.sources.latestPosition,
         type: 'POST',
         dataType: 'json',
         data: {idArrayStr : vidStr},
         complete: function(xhr, textStatus) {
-          CTFO.config.globalObject.addMarkerFinishedFlag = true;
+          LG.config.globalObject.addMarkerFinishedFlag = true;
         },
         success: function(data, textStatus, xhr) {
-          CTFO.config.globalObject.addMarkerFinishedFlag = true;
+          LG.config.globalObject.addMarkerFinishedFlag = true;
           if (data && data.error) return false;
           if (callback) callback(data, op);
         },
         error: function(xhr, textStatus, errorThrown) {
-          CTFO.config.globalObject.addMarkerFinishedFlag = true;
+          LG.config.globalObject.addMarkerFinishedFlag = true;
         },
         timeout: 20000
       });
@@ -296,10 +296,10 @@ CTFO.Model.VehicleMonitor = (function() {
      * @return {[type]} [description]
      */
     var startRefreshSelectedVehiclesStatus = function() {
-      if (!CTFO.cache.selectedVehicleIds || CTFO.cache.selectedVehicleIds.length < 1) return false;
+      if (!LG.cache.selectedVehicleIds || LG.cache.selectedVehicleIds.length < 1) return false;
       selectedVehiclesRefreshTimer = setInterval(function() {
-        if (CTFO.config.globalObject.addMarkerFinishedFlag)
-          getVehicleLatestStatusData(CTFO.cache.selectedVehicleIds, false);
+        if (LG.config.globalObject.addMarkerFinishedFlag)
+          getVehicleLatestStatusData(LG.cache.selectedVehicleIds, false);
         if(window.CollectGarbage) setTimeout("CollectGarbage();", 1);
       }, selectedVehiclesRefreshTimerDelay);
     };
@@ -334,7 +334,7 @@ CTFO.Model.VehicleMonitor = (function() {
           else if (markersArrPoints[0] && markersArrPoints[1] && markersArrPoints.length < 3)
             cMap.panTo(markersArrPoints[0], markersArrPoints[1]);
           markersArrPoints = [];
-          CTFO.config.globalObject.addMarkerFinishedFlag = true;
+          LG.config.globalObject.addMarkerFinishedFlag = true;
       }
     };
     /**
@@ -409,7 +409,7 @@ CTFO.Model.VehicleMonitor = (function() {
           id : d.vid,
           lng : d.maplon ? d.maplon / 600000 : 0,
           lat : d.maplat ? d.maplat / 600000 : 0,
-          iconUrl : CTFO.utilFuns.commonFuns.getCarDirectionIcon(d.head, d.isonline, markerIconType, d.alarmFlag, vspeed),
+          iconUrl : LG.utilFuns.commonFuns.getCarDirectionIcon(d.head, d.isonline, markerIconType, d.alarmFlag, vspeed),
           iconW : d.alarmcode ? 20 : (markerIconType === "cluster" ? 16 : 20),
           iconH : d.alarmcode ? 20 : (markerIconType === "cluster" ? 16 : 20),
           label : d.vehicleno + " " + vspeed + "km/h",
@@ -468,7 +468,7 @@ CTFO.Model.VehicleMonitor = (function() {
               id : alarmFlag ? alarmFlag : vid,
               lng : this.maplon ? this.maplon / 600000 : 0,
               lat : this.maplat ? this.maplat / 600000 : 0,
-              iconUrl : CTFO.utilFuns.commonFuns.getCarDirectionIcon(this.head, this.isonline, this.alarmFlag, this.speed ? this.speed / 10 : 0)
+              iconUrl : LG.utilFuns.commonFuns.getCarDirectionIcon(this.head, this.isonline, this.alarmFlag, this.speed ? this.speed / 10 : 0)
           };
           if(cMap.markerObj[params.id]) {
               var marker = cMap.moveMarker(params);
@@ -482,7 +482,7 @@ CTFO.Model.VehicleMonitor = (function() {
         var vids = (d + '').split("_");
         var v = vids[1] || d; // (vids.length > 1) ? vids[1] : d;
         if(!v) return false;
-        // $.get(CTFO.config.sources.latestPosition, {idArrayStr : v}, function(data, textStatus, xhr) {
+        // $.get(LG.config.sources.latestPosition, {idArrayStr : v}, function(data, textStatus, xhr) {
         //   if (data && data[0]) handleVehiclePopWindow(data, v);
         // });
         queryVehicleLatestStatusData(v, v, function(data, v) {
@@ -500,19 +500,19 @@ CTFO.Model.VehicleMonitor = (function() {
     var initSingleVehicleWindow = function(fType, d, fTypes) {
       if(!fTypes){
         fTypes = [{code: 'vehicleDetailModel', name: '车辆详情', icon: 'ico210'}];
-        if($.inArray("FG_MEMU_MONITOR_LOCUS", CTFO.cache.auth) > -1)
+        if($.inArray("FG_MEMU_MONITOR_LOCUS", LG.cache.auth) > -1)
           fTypes.push({code: 'vehiclePathModel', name: '单车轨迹', icon: 'ico22'});
-        if($.inArray("FG_MEMU_MONITOR_MAP_INFO", CTFO.cache.auth) > -1)
+        if($.inArray("FG_MEMU_MONITOR_MAP_INFO", LG.cache.auth) > -1)
           fTypes.push({code: 'vehicleScheduleModel', name: '单车调度', icon: 'ico26'});
-        if($.inArray("FG_MEMU_MONITOR_PHOTOGRAPH", CTFO.cache.auth) > -1)
+        if($.inArray("FG_MEMU_MONITOR_PHOTOGRAPH", LG.cache.auth) > -1)
           fTypes.push({code: 'vehiclePhotoModel', name: '单车照片', icon: 'ico25'});
-        if($.inArray("FG_MEMU_MONITOR_VIEW", CTFO.cache.auth) > -1)
+        if($.inArray("FG_MEMU_MONITOR_VIEW", LG.cache.auth) > -1)
           fTypes.push({code: 'vehicleVideoModel', name: '单车视频', icon: 'ico27'});
-        if($.inArray("FG_MEMU_MONITOR_FACILITY", CTFO.cache.auth) > -1)
+        if($.inArray("FG_MEMU_MONITOR_FACILITY", LG.cache.auth) > -1)
           fTypes.push({code: 'vehicleAroundModel', name: '单车周边', icon: 'ico212'});
-        if($.inArray("FG_MEMU_MONITOR_MONITOR", CTFO.cache.auth) > -1)
+        if($.inArray("FG_MEMU_MONITOR_MONITOR", LG.cache.auth) > -1)
           fTypes.push({code: 'vehicleTapingModel', name: '单车录音/监听', icon: 'ico24'});
-        if($.inArray("FG_MEMU_MONITOR_EMPHASIS", CTFO.cache.auth) > -1)
+        if($.inArray("FG_MEMU_MONITOR_EMPHASIS", LG.cache.auth) > -1)
           fTypes.push({code: 'vehicleTrackingModel', name: '单车跟踪', icon: 'ico23'});
       }
       var vehicleSubfunctionsConfig = {
@@ -534,7 +534,7 @@ CTFO.Model.VehicleMonitor = (function() {
       } else {
           if (vehicleDetailObj) vehicleDetailObj.close();
           vehicleDetailObjId = d.vid;
-          vehicleDetailObj = CTFO.Model.VehicleDashBorad.getInstance().init(vehicleSubfunctionsConfig);
+          vehicleDetailObj = LG.Model.VehicleDashBorad.getInstance().init(vehicleSubfunctionsConfig);
       }
     };
     /**
@@ -555,10 +555,10 @@ CTFO.Model.VehicleMonitor = (function() {
             closeHandler: function() {
               resize(p.cHeight);
             },
-            html: {activeMonitor: CTFO.config.template.activeMonitor, activeAlarm: CTFO.config.template.activeAlarm}
+            html: {activeMonitor: LG.config.template.activeMonitor, activeAlarm: LG.config.template.activeAlarm}
         };
         if(monitorBottomObj) monitorBottomObj.changeTab(type);
-        else monitorBottomObj = CTFO.Model.ActiveMonitorList.getInstance().init(config);
+        else monitorBottomObj = LG.Model.ActiveMonitorList.getInstance().init(config);
         resize(p.cHeight);
     };
     var showPoiSearchDiv = function() {
@@ -570,7 +570,7 @@ CTFO.Model.VehicleMonitor = (function() {
         cMap: cMap,
         monitorObj: monitorObj
       };
-      monitorTreeObj = CTFO.Model.MonitorTree.getInstance().init(param);
+      monitorTreeObj = LG.Model.MonitorTree.getInstance().init(param);
     };
 
     var mapFullScreen = function() {
