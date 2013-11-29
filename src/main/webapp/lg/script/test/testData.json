@@ -18,8 +18,8 @@ var menuList = {
 			"name": "AD管理",
 			"icon": "ico16",
 			"auth": "FG_MEMU_OPERATIONS_TRIGGER",
-			"url": "model/monitor/photographConfig.html",
-			"mid": "photographConfig",
+			"url": "model/monitor/adManage.html",
+			"mid": "adManage",
 			"l": 2
 		}]
 	}]

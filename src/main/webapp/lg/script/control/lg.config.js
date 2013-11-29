@@ -222,7 +222,7 @@ LG.config = {
     monitor : 'LG.Model.VehicleMonitor', // 实时监控
     fencing : 'LG.Model.Fencing', //围栏管理
    
-    photographConfig : 'LG.Model.PhotographConfig', // 触发拍照设置
+    adManage : 'LG.Model.AdManage', // 触发拍照设置
    
     operationLog : 'LG.Model.OperationLog', //操作日志查询
 

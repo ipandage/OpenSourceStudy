@@ -35,7 +35,7 @@ require.config({
     vehicleTree: 'model/universalTree/lg.model.vehicleTree', // 通用左侧树 > 车辆树
     orgTree: 'model/universalTree/lg.model.orgTree', // 通用左侧树 > 组织树(无checkbox)
     	
-    photographConfig: 'model/lg.model.photographConfig', //触发拍照设置
+    adManage: 'model/lg.model.adManage', //AD管理
   },
   shim: {
     'ligerui_core': ['jquery'],
@@ -66,11 +66,11 @@ require.config({
     'homePage': ['jquery', 'initConfig', 'highcharts'],
     'monitor': ['jquery', 'initConfig', 'highcharts'],
     'monitorTree': ['jquery', 'initConfig', 'monitor'],
-    'photographConfig': ['jquery', 'initConfig', 'highcharts'],
+    'adManage': ['jquery', 'initConfig', 'highcharts'],
   },
   waitSeconds: 60
 });
-require(['jquery', 'domReady', 'ligerui', 'json2', 'sha1', 'cookie', 'validate_metadata', 'validate_message', 'validate_extend', 'ajaxform', 'webeditor', 'mask', 'jui', 'timepicker', 'frame', 'commitLog', 'universalTree', 'orgTree', 'homePage', 'monitor', 'monitorTree', 'photographConfig'], function($, domReady) {
+require(['jquery', 'domReady', 'ligerui', 'json2', 'sha1', 'cookie', 'validate_metadata', 'validate_message', 'validate_extend', 'ajaxform', 'webeditor', 'mask', 'jui', 'timepicker', 'frame', 'commitLog', 'universalTree', 'orgTree', 'homePage', 'monitor', 'monitorTree', 'adManage'], function($, domReady) {
   domReady(function() {
     var param = {
       mainDiv: $('body'),

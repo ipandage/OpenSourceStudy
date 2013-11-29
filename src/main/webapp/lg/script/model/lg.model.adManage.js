@@ -1,10 +1,10 @@
 /*global LG. true, $: true */
 /* devel: true, white: false */
 /**
- * [ 触发拍照设置管理功能模块包装器]
+ * [ AD管理功能模块包装器]
  * @return {[type]}     [description]
  */
-LG.Model.PhotographConfig = (function(){
+LG.Model.AdManage = (function(){
     var uniqueInstance;
     function constructor() {
         var p = {};
