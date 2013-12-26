@@ -6,13 +6,8 @@ LG.cache = {
   menu : {}, // 用户权限下的菜单列表
   alarmType : {}, // 告警类型码表缓存
   generalCode : {}, // 通用编码缓存
-  schedulePreMessage : {}, // 预设调度信息
-  alarmLevel: {}, // 告警级别
-  alarmTypeDesc: {}, // 告警描述缓存
   frame : null,
-  orgTrees : {},
-  selectedVehicleIds : [], // 实时监控模块, 已选车辆id缓存
-  commandSeqs : [] // 下发指令id缓存
+  orgTrees : {}
 
 // ... 其他缓存
 };

@@ -10,7 +10,7 @@ html{ height:100%;}
 
 /*heardbox*/
 .heardbox{ background:url(../img/frame/head_bg.png) 0px 0px repeat-x; height:80px;position:relative; z-index:1500; min-width:1200px;}
-.logo{ background:url(../img/frame/head_bg.png) 0px -100px no-repeat; width:300px; float:left; height:78px; position:absolute; left:0; overflow:hidden;}
+.logo{ background:url(../img/frame/head_bg1.png) 0px -100px no-repeat; width:300px; float:left; height:78px; position:absolute; left:0; overflow:hidden;}
 .logoPRE{background:url(../img/frame/head_bg.png) 0px 10px repeat-x; float:left;}
 .logoPRE img{ width:300px;height:78px; overflow:hidden;}
 

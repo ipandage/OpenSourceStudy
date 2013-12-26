@@ -2,8 +2,6 @@ require.config({
   paths: {
     jquery: 'plugin/jquery/jquery-1.8.1.min',
     cookie: 'plugin/jquery/jquery.cookie',
-    // map : 'http://api.transmap.com.cn/v2.2/maps',
-    // mapserver : 'http://api.transmap.com.cn/v2.2/server',
     tiptip: 'plugin/jquery/jquery_tiptip/jquery.tipTip.minified',
     jui: 'plugin/jquery/jquery.ui.1.9.0/jquery-ui-1.9.0.custom.min',
     timepicker: 'plugin/jquery/jquery_timepicker/jquery.timepicker.min',
@@ -26,9 +24,6 @@ require.config({
     frame: 'control/lg.frame', // 框架模型
     util: 'control/lg.util', // 公共组件
     commitLog: 'model/lg.model.commitLog', // 操作日志
-    homePage: 'model/lg.model.homePage', // 首页
-    monitor: 'model/lg.model.monitor', // 实时监控
-    monitorTree: 'model/lg.model.monitorTree', // 实时监控 > 左侧树模块
 
     universalTree: 'model/universalTree/lg.model.universalTree', // 通用左侧树
     treeModel: 'model/universalTree/lg.model.treeModel', // 通用左侧树 > 组织树
@@ -63,14 +58,11 @@ require.config({
     'vehicleTree': ['util', 'ligerui'],
     'orgTree': ['util', 'ligerui'],
 
-    'homePage': ['jquery', 'initConfig', 'highcharts'],
-    'monitor': ['jquery', 'initConfig', 'highcharts'],
-    'monitorTree': ['jquery', 'initConfig', 'monitor'],
-    'adManage': ['jquery', 'initConfig', 'highcharts'],
+    'adManage': ['jquery', 'initConfig', 'highcharts']
   },
   waitSeconds: 60
 });
-require(['jquery', 'domReady', 'ligerui', 'json2', 'sha1', 'cookie', 'validate_metadata', 'validate_message', 'validate_extend', 'ajaxform', 'webeditor', 'mask', 'jui', 'timepicker', 'frame', 'commitLog', 'universalTree', 'orgTree', 'homePage', 'monitor', 'monitorTree', 'adManage'], function($, domReady) {
+require(['jquery', 'domReady', 'ligerui', 'json2', 'sha1', 'cookie', 'validate_metadata', 'validate_message', 'validate_extend', 'ajaxform', 'webeditor', 'mask', 'jui', 'timepicker', 'frame', 'commitLog', 'universalTree', 'orgTree', 'adManage'], function($, domReady) {
   domReady(function() {
     var param = {
       mainDiv: $('body'),
