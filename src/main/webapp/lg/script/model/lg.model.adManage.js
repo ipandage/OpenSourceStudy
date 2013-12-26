@@ -131,7 +131,19 @@ LG.Model.AdManage = (function(){
 						width : 150,
 						sortable : true,
 						isSort : false,
-						align : 'left'
+						align : 'left',
+						render : function(row) {
+		                      var edit = "";
+		                      var remove = "";
+		                      
+		                      //if ( $.inArray("FG_MEMU_MANAGER_USER_U", CTFO.cache.auth) ) {
+		                          edit ='<span class=" mr10 cF00"><font title="修改" class="hand" name="updateAdManage" opId="'+ row.id +'">修改</font></span>';
+		                      //}
+		                      //if ($.inArray("FG_MEMU_MANAGER_USER_D", CTFO.cache.auth) ) {
+		                          remove = '<span class=" mr10 cF00"><font title="删除" class="hand" name="removeAdManage" opId="'+ row.id +'">删除</font></span>';
+		                      //}
+		                      return  edit + remove ;
+		                }
 					}],
 					sortName : 'id',
 					url : pvp.queryListUrl,
