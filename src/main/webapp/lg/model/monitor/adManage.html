@@ -1,23 +1,57 @@
 <!--触发拍照设置  photographConfig-->
 <!--main-->	
-<div class="contentRight main">
+<div class=" main">
     <div class=" h25 lh25 lineS_b tit2 overh pageLocation">
         <span class=" ico146"></span>
         <font>当前位置：</font>
         <font>系统设置</font> -> 
         <font>AD管理</font>
     </div>
-    <div class="contentRightContent m3">
-          <div class=" lineS69c h30 p5 tit5 overh photographConfigTerm">
-                <form name='photoConfSearchForm'>
-          	      <!--组织ID  -->
-          	  	  <input type="hidden" name="requestParam.equal.corpIds" value=""/>
-               <div class="h30 lh30 fl w160">
-                                                          名称：<input name="requestParam.like.vehicleNo" type="text" value=""/>
-               </div>
-               <span class=" btn1 cFFF fl ml20 searchGrid">查 询</span>
+    <div class="adManageContent m3">
+          <div class=" lineS69c h30 p5 tit5 overh ">
+               <form name="adManageSearchForm">
+          	       <!--组织ID  -->
+          	  	   <input type="hidden" name="requestParam.equal.corpIds" value=""/>
+	               <div class="h30 lh30 fl w160">
+	                                                          名称：<input name="requestParam.like.vehicleNo" type="text" value=""/>
+	               </div>
+	               <span class=" btn1 cFFF fl ml20 searchBtn">查 询</span>
+	               <span class="btn2 cFFF fr ml20 addBtn">新增</span>
               </form>
           </div>
-          <div class=" lineS mt3 bcFFF photographConfigGrid" style=" height:490px"></div>
+          <div class=" lineS mt3 bcFFF adManageGrid" style=" height:520px"></div>
     </div>
+    <!--新增HTML片断-->
+    <div class="p10 adManageContent none">
+		  <h1 class=" h40 lh30 mb20">AD信息管理</h1>
+          <div class=" bcF2 lineD lh30 h30 pl10">
+                                       带<font class=" cF00">*</font>号为必填项
+          </div>
+          <div class="w pt20">
+	           <form name="adManage">
+	               <input name="spOperator.entId" type="hidden" value="1"/>
+	               <input name="spOperator.createBy" type="hidden"/>
+	               <input name="spOperator.opId" type="hidden"/>
+	               <input name="parentOrgCode" type="hidden" value="600001"/>
+	
+	               <div class="w pt20">
+	                   <ul class="modifyFormConditionTable">
+	                       <li class="h25 lh25 fl w33b mb10">
+	                           <div class="fl w90 tr"><font class="fb cF00">* </font>名称：</div>
+	                           <input name="spOperator.opLoginname" type="text" class="w115 mt2 fl mr10 {required:true}"  value="">
+	                       </li>
+						   <li class="h25 lh25 fl w33b mb10 passwordBox">
+	                           <div class="fl w90 tr"><font class="fb cF00">* </font>描述：</div>
+	                           <input name="spOperator.opPass" type="password" class="w115 mt2 {required:true,minlength:6}"  value="" id="opPass">
+	                       </li>
+						</ul>
+	               </div>
+	
+	               <div class=" w mt15 fl lineD_t pt10">
+	                   <span name='saveForm' class="btn4 fl" >保存</span>
+	                   <span name='cancelSave' class="btn4 fl ml10">取消</span>
+	               </div>
+	           </form>
+          </div>
+     </div>
 </div>

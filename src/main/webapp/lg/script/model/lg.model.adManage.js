@@ -13,12 +13,11 @@ LG.Model.AdManage = (function(){
 		var pvp = {
 			pageSize : 30,
 			pageSizeOptions : [ 10, 20, 30, 40 ],
-			detailUrl : LG.config.sources.detailPhotoConf,
-			queryListUrl : LG.config.sources.queryPhotoConfListByPage
+			detailUrl : LG.config.sources.detailAdManage,
+			queryListUrl : LG.config.sources.queryAdManageList
 		};
 		var htmlObj = null; // 主要dom引用缓存
 		var grid = null; // grid对象缓存
-		var leftTree = null; // 通用树对象
 		// 私有方法
 		var pvf = {
 			/**
@@ -46,13 +45,7 @@ LG.Model.AdManage = (function(){
 			 *            c 容器
 			 */
 			initGridAreaButton : function(c) {
-				c.find('.searchGrid').click(function() {
-					var selectedTreeData = leftTree.getSelectedData();
-					//获取选择的组织ID
-					if(selectedTreeData && selectedTreeData.data){
-						var corpIdsArr = selectedTreeData.data["corpIds"]  || [];//车辆ID
-						htmlObj.searchForm.find("input[name$='corpIds']").val(corpIdsArr.join(','));
-					}
+				c.find('.searchBtn').click(function() {
     				//提交FORM数据
 					var d = $(c).serializeArray();
 					var p = [];
@@ -71,6 +64,17 @@ LG.Model.AdManage = (function(){
 						parms : p
 					});
 					grid.loadData(true);
+					
+				
+				});
+				
+				//新增按钮
+				c.find('.addBtn').click(function(){
+					if (htmlObj.adManageFormContent.hasClass('none')) {
+						htmlObj.adManageFormContent.removeClass('none');
+						htmlObj.adManageGridContent.addClass('none');
+					}
+					
 				});
 			},
 
@@ -163,7 +167,7 @@ LG.Model.AdManage = (function(){
 				var actionType = $(eDom).attr('class');
 				var vid = $(eDom).attr('vid');
 				switch (actionType) {
-				case 'viewPhotoConf': // 查看详情
+				case 'updateAdManage': // 修改AD信息
 					pvf.viewPhotoConf(vid);
 					flag = false;
 					break;
@@ -201,9 +205,8 @@ LG.Model.AdManage = (function(){
 			 * @param {Object}
 			 *            r sim卡信息json串
 			 */
-			compileFormData : function(container,data) {
-				//获得表格对象
-				var photoSetTab = container.find("table[name=photoSetTab]");
+			compileFormData : function(container, data) {
+				
 				
 			},
 			
@@ -219,11 +222,17 @@ LG.Model.AdManage = (function(){
 			/**
 			 * @description 初始化新增页面
 			 */
-			initAddOrUpdateForm : function(container, vids) {
+			initAddOrUpdateForm : function(c) {
 				//保存按钮
+				c.find('span[name=saveForm]').click(function() {
+					
+				});
 				//取消按钮
-				container.find('.triggerPhotosCannel').click(function() {
-					$('.l-dialog-close', container.header).trigger("click");
+				c.find('span[name=cancelSave]').click(function() {
+					if (htmlObj.adManageGridContent.hasClass('none')) {
+						htmlObj.adManageGridContent.removeClass('none');
+						htmlObj.adManageFormContent.addClass('none');
+					}
 				});
 			},
 			
@@ -231,7 +240,7 @@ LG.Model.AdManage = (function(){
 			 * @description 清空表单
 			 */
 			resetThis : function() {
-				$(htmlObj.modifyContainer).find('input[type="text"]').each(function() {
+				$(htmlObj.modifyForm).find('input[type="text"]').each(function() {
 					$(this).val("");
 				}).end().find('select').each(function() {
 					$(this).val("");
@@ -239,10 +248,10 @@ LG.Model.AdManage = (function(){
 					$(this).val("");
 				}).end();
 
-				$(htmlObj.modifyFormContainer).find('label[class="error"]').each(function() {
+				$(htmlObj.adManageFormContent).find('label[class="error"]').each(function() {
 					$(this).remove();
 				});
-				$(htmlObj.modifyFormContainer).find('.error').removeClass('error');
+				$(htmlObj.adManageFormContent).find('.error').removeClass('error');
 			},
 		};
 
@@ -251,40 +260,39 @@ LG.Model.AdManage = (function(){
             	p = $.extend({}, p || {}, options || {});
 
             	htmlObj = {
-    					mainContainer : $('#' + p.mid),
-    					rightContainer : $('#' + p.mid).find('.contentRight'),
-    					searchForm : $('#' + p.mid).find('.contentRight').find('form[name=photoConfSearchForm]'),
-    					gridButtons : $('#' + p.mid).find('.gridButtonArea'),
-    					photographConfigGrid : $('#' + p.mid).find('.photographConfigGrid'),//表格容器
-    					treeContainer : $('#' + p.mid).find('.leftTreeContainer')//树容器
-    				};
+    					pageLocation  : p.mainContainer.find('.pageLocation'), //位置
+    					adManageGridContent : p.mainContainer.find('.adManageContent:eq(0)'),//内容容器01
+    					searchForm  : p.mainContainer.find('form[name=adManageSearchForm]'), //查询表单
+    					adManageGrid  : p.mainContainer.find('.adManageGrid'), //表格
+    					
+                        adManageFormContent : p.mainContainer.find('.adManageContent:eq(1)'),//内容容器02
+                        modifyForm: p.mainContainer.find('form[name=adManage]')//新增或修改表单
+    			};
             	this.resize(p.cHeight);
-				// TODO 初始化赋值
-				//pvf.initAuth(htmlObj.mainContainer);
-				pvf.initGrid(htmlObj.photographConfigGrid);
-				//查询按钮 设置 以及 批量设置和批量取消
-				pvf.initGridAreaButton(htmlObj.searchForm);
-				pvf.initFormSelects();
+				//pvf.initAuth(htmlObj.mainContainer);// TODO 初始化按钮权限
+				pvf.initGridAreaButton(htmlObj.searchForm);//查询按钮
+				pvf.initGrid(htmlObj.adManageGrid);//表格
+				
+				pvf.initAddOrUpdateForm(htmlObj.modifyForm);//新增页面
+				pvf.initFormSelects();//新增页面下拉框
 
 				return this;
             },
             resize: function(ch) {
                 if(ch < minH) ch = minH;
-                p.mainContainer.height(ch - 100);
+                p.mainContainer.height(ch);
                 pvp.wh = {
                 		cut : 10,
-                		w : htmlObj.mainContainer.width()  - 5,
-                		h : htmlObj.mainContainer.height(),
-                		gh : htmlObj.mainContainer.height() - htmlObj.rightContainer.find('.pageLocation').height() - htmlObj.rightContainer.find('.photographConfigTerm').height()  - 20
+                		w : p.mainContainer.width()  - 5,
+                		h : p.mainContainer.height(),
+                		gh : p.mainContainer.height() - htmlObj.pageLocation.height() - htmlObj.searchForm.height() - 50
                 };
-                //设置包裹表格外框的高度
-                htmlObj.photographConfigGrid.height(pvp.wh.gh);
             },
             showModel: function() {
-            	htmlObj.mainContainer.show();
+            	p.mainContainer.show();
             },
             hideModel: function() {
-            	htmlObj.mainContainer.hide();
+            	p.mainContainer.hide();
             }
         };
     }
