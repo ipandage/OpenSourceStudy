@@ -315,7 +315,6 @@ LG.Model.AdManage = (function(){
 			initAddOrUpdateForm : function(c) {
 				//保存按钮
 				c.find('span[name=saveForm]').click(function() {
-					
 					var v = true;
 					var validate = $(c).validate({
 						debug : false,
@@ -331,9 +330,7 @@ LG.Model.AdManage = (function(){
 					if (!v) {
 						return false;
 					}
-					
-					var parms = {};
-					var d = $(c).serializeArray();
+					var parms = $(c).serializeArray();
 					$.ajax({
 						url : addFlag ? pvp.addUrl : pvp.updateUrl,
 						type : 'post',
