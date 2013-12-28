@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.lg.app.entity.Ad;
 import com.lg.app.service.AdService;
@@ -40,8 +41,13 @@ public class Admin_AdWidget {
     @ResponseBody
     @Log
     public Page<Ad> list(@ModelAttribute Page<Ad> adPage, @ModelAttribute Ad ad, @RequestParam Map queryParams, HttpServletRequest request, HttpServletResponse response, Model model) {
+    	String pageNo = request.getParameter("pageNo");
+    	String pageSize = request.getParameter("pageSize");
+    	
         if (adPage == null) {
             adPage = new Page<Ad>();
+            adPage.setPageNo(Integer.parseInt(pageNo));
+            adPage.setPageSize(Integer.parseInt(pageSize));
         }
         if (adPage.getSort() == null) {
             adPage.setSort(new Sort("id", Sort.DESC));
