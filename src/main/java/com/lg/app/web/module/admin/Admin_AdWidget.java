@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.lg.app.entity.Ad;
 import com.lg.app.service.AdService;
@@ -63,4 +62,12 @@ public class Admin_AdWidget {
         return "success";
     }
     
+    @ResponseBody
+    @RequestMapping("/delete")
+    public String delete(long id) {
+    	Long[] ids = new Long[1];
+    	ids[0] = id;
+        adService.remove(ids);
+        return "success";
+    }
 }
