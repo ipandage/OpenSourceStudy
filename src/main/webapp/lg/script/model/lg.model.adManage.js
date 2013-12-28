@@ -155,8 +155,8 @@ LG.Model.AdManage = (function(){
 						value : LG.cache.user.entId
 					} ],
 					usePager : true,
-					pageParmName : 'requestParam.page',
-					pagesizeParmName : 'requestParam.rows',
+					pageParmName : 'pageNo', // 页索引参数名，(提交给服务器)
+					pagesizeParmName : 'pageSize',
 					pageSize : pvp.pageSize,// 10
 					pageSizeOptions : pvp.pageSizeOptions,
 					height : pvp.wh.gh,
@@ -364,9 +364,9 @@ LG.Model.AdManage = (function(){
 				});
 				//取消按钮
 				c.find('span[name=cancelSave]').click(function() {
-					if (htmlObj.adManageGridContent.hasClass('none')) {
-						htmlObj.adManageGridContent.removeClass('none');
-						htmlObj.adManageFormContent.addClass('none');
+					if (htmlObj.gridContent.hasClass('none')) {
+						htmlObj.gridContent.removeClass('none');
+						htmlObj.formContent.addClass('none');
 					}
 				});
 			},
