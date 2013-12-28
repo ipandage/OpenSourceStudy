@@ -32,7 +32,7 @@ LG.config = {
      */
 	detailAdManage: '/OpenSourceStudy/admin/ad/list.do',//查看AD管理详情
 	addAdManage: '/OpenSourceStudy/admin/ad/create/save.do',//新增AD管理
-	delAdManage: '/OpenSourceStudy/admin/ad/list.do',//删除AD管理
+	delAdManage: '/OpenSourceStudy/admin/ad/delete.do',//删除AD管理
 	updateAdManage: '/OpenSourceStudy/admin/ad/list.do',//更新AD管理
     queryAdManageList: '/OpenSourceStudy/admin/ad/list.do',//分页列表查询
 

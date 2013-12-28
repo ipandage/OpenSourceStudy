@@ -138,12 +138,11 @@ LG.Model.AdManage = (function(){
 						render : function(row) {
 		                      var edit = "";
 		                      var remove = "";
-		                      
 		                      //if ( $.inArray("FG_MEMU_MANAGER_USER_U", CTFO.cache.auth) ) {
 		                          edit ='<span class=" mr10 cF00"><font title="修改" class="hand update" id="'+ row.id +'">修改</font></span>';
 		                      //}
 		                      //if ($.inArray("FG_MEMU_MANAGER_USER_D", CTFO.cache.auth) ) {
-		                          remove = '<span class=" mr10 cF00"><font title="删除" class="hand del" id="'+ row.id +'">删除</font></span>';
+		                          remove = '<span class=" mr10 cF00"><font title="删除" class="del" id="'+ row.id +'">删除</font></span>';
 		                      //}
 		                      return  edit + remove ;
 		                }
@@ -289,21 +288,21 @@ LG.Model.AdManage = (function(){
 			 * @param {Object}
 			 *            opId 用户id
 			 */
-			del : function(p) {
-				if (p.opId) {
+			del : function(ad) {
+				if (ad.id) {
 					$.ajax({
 						url : pvp.delUrl,
 						type : 'POST',
 						dataType : 'json',
 						data : {
-							'spOperator.opId' : p.id
+							'id' : ad.id
 						},
 						error : function() {
 							// alert('Error loading json document');
 						},
 						success : function(r) {
-							if (p.onSuccess)
-								p.onSuccess(r);
+							if (ad.onSuccess)
+								ad.onSuccess(r);
 						}
 					});
 				}
