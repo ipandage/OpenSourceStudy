@@ -2,7 +2,7 @@
 
 body{ background:#0572b0;}
 .login_wrap{ background:#2d96ce; padding-top:50px;}
-.logo{ background: url(../img/login_bg.png) 0px 0px no-repeat; width:500px; height:75px; margin-left:50px;}
+.logo{ background: url(../img/login_bg1111.png) 0px 0px no-repeat; width:500px; height:75px; margin-left:50px;}
 .login_content{ background:url(../img/l_bg.jpg) center bottom no-repeat; height:310px; padding-top:120px;}
 .login_box{ background: url(../img/login_bg.png) 0px -90px no-repeat; height:345px; width:380px; float:right; margin-right:120px; margin-bottom:-40px; position:relative; display:inline;}
 a.login_submit,a.login_submit:link,a.login_submit:visited{background: url(../img/login_bg.png) -120px -450px no-repeat; width:100px; display:block; height:35px;}

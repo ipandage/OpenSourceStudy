@@ -394,19 +394,8 @@ LG.Model.FrameManager = (function(){
           LG.utilFuns.throttle = LG.Util.throttle;
           //通用函数
           LG.utilFuns.commonFuns = new LG.Util.CommonFuns();
-          // 指令下发函数
-          LG.utilFuns.commandFuns = new LG.Util.Commands();
         };
-        /**
-         * [initUtilCache 初始化通用预加载信息]
-         * @return {[type]} [description]
-         */
-        var initUtilCache = function() {
-          $.get(LG.config.sources.preMessage, null, function(data, textStatus, xhr) {
-            LG.cache.schedulePreMessage = data;
-          }, 'json');
-
-        };
+        
         /**
          * [resize 监听浏览器窗口宽高调整]
          * @return {[type]} [description]
@@ -424,7 +413,6 @@ LG.Model.FrameManager = (function(){
                 var that = this;
                 p = $.extend({}, p || {}, options || {});
                 initUtilFuns(); 
-                initUtilCache();
                 //initLoginInfo(function() { TODO
                     initMenu();
                 //});
