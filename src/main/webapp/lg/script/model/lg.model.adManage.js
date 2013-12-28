@@ -13,11 +13,15 @@ LG.Model.AdManage = (function(){
 		var pvp = {
 			pageSize : 30,
 			pageSizeOptions : [ 10, 20, 30, 40 ],
-			detailUrl : LG.config.sources.detailAdManage,
-			queryListUrl : LG.config.sources.queryAdManageList
+			detailUrl : LG.config.sources.detailAdManage,//详情
+			addUrl : LG.config.sources.addAdManage,//新增
+			delUrl : LG.config.sources.delAdManage,//删除
+			updateUrl : LG.config.sources.updateAdManage,//修改
+			queryListUrl : LG.config.sources.queryAdManageList//分页列表查询
 		};
 		var htmlObj = null; // 主要dom引用缓存
 		var grid = null; // grid对象缓存
+		var addFlag = true;
 		// 私有方法
 		var pvf = {
 			/**
@@ -70,10 +74,12 @@ LG.Model.AdManage = (function(){
 				
 				//新增按钮
 				c.find('.addBtn').click(function(){
-					if (htmlObj.adManageFormContent.hasClass('none')) {
-						htmlObj.adManageFormContent.removeClass('none');
-						htmlObj.adManageGridContent.addClass('none');
+					if (htmlObj.formContent.hasClass('none')) {
+						htmlObj.formContent.removeClass('none');
+						htmlObj.gridContent.addClass('none');
 					}
+					
+					pvf.showAddOrUpdateForm({});//给 addFlag赋值
 					
 				});
 			},
@@ -84,7 +90,7 @@ LG.Model.AdManage = (function(){
 			 *            gridContainer 表格的容器
 			 * @return {Object} grid 表格对象
 			 */
-			initGrid : function(gridContainer) {
+			initGrid : function(c) {
 				var gridOptions = {
 					root : 'result',
 					record : 'totalCount',
@@ -103,16 +109,14 @@ LG.Model.AdManage = (function(){
 						sortable : true,
 						isSort : false,
 						align : 'center'
-					},
-					{
+					},{
 						display : '描述',
 						name : 'description',
 						width : 180,
 						sortable : true,
 						isSort : false,
 						align : 'center'
-					},
-					{
+					},{
 						display : '创建时间',
 						name : 'createTime',
 						width : 150,
@@ -124,8 +128,7 @@ LG.Model.AdManage = (function(){
 							var r = row.createTime ? LG.utilFuns.dateFuns.utc2date(row.createTime) : '--';
 							return r;
 						}
-					},
-					{
+					},{
 						display : '操作',
 						name : 'operate',
 						width : 150,
@@ -137,10 +140,10 @@ LG.Model.AdManage = (function(){
 		                      var remove = "";
 		                      
 		                      //if ( $.inArray("FG_MEMU_MANAGER_USER_U", CTFO.cache.auth) ) {
-		                          edit ='<span class=" mr10 cF00"><font title="修改" class="hand" name="updateAdManage" opId="'+ row.id +'">修改</font></span>';
+		                          edit ='<span class=" mr10 cF00"><font title="修改" class="hand update" id="'+ row.id +'">修改</font></span>';
 		                      //}
 		                      //if ($.inArray("FG_MEMU_MANAGER_USER_D", CTFO.cache.auth) ) {
-		                          remove = '<span class=" mr10 cF00"><font title="删除" class="hand" name="removeAdManage" opId="'+ row.id +'">删除</font></span>';
+		                          remove = '<span class=" mr10 cF00"><font title="删除" class="hand del" id="'+ row.id +'">删除</font></span>';
 		                      //}
 		                      return  edit + remove ;
 		                }
@@ -164,28 +167,64 @@ LG.Model.AdManage = (function(){
 					}
 					
 				};
-				gridContainer.ligerGrid(gridOptions);
-				grid = gridContainer.ligerGetGridManager();
+				c.ligerGrid(gridOptions);
+				grid = c.ligerGetGridManager();
 				return grid;
-			}
+			},
+			
 			/**
 			 * @description 绑定表格操作列的事件
 			 * @param {Object}
 			 *            eDom 点击对象DOM
 			 */
-			,
+			
 			bindRowAction : function(eDom) {
 				var flag = true;
 				var actionType = $(eDom).attr('class');
-				var vid = $(eDom).attr('vid');
+				var id = $(eDom).attr('id');
 				switch (actionType) {
-				case 'updateAdManage': // 修改AD信息
-					pvf.viewPhotoConf(vid);
-					flag = false;
+				case 'update': // 修改AD信息
+					pvf.showAddOrUpdateForm({
+						id : id,
+						onSuccess : function(d) {
+							pvf.compileFormData(d);
+							// 显示编辑form
+							if (htmlObj.formContent.hasClass('hidden')) {
+								htmlObj.formContent.removeClass('hidden');
+								htmlObj.gridContent.addClass('hidden');
+							}
+						}
+					});
+					
 					break;
+					
+				case 'del': // 删除
+					$.ligerDialog.confirm('确定删除吗？', function(yes) {
+						if (yes) {
+							pvf.del({
+								id : id,
+								onSuccess : function(r) {
+									if (r == "success") {
+										$.ligerDialog.success("删除成功", '提示', function(y) {
+											if (y) {
+												grid.loadData(true);
+											}
+										});
+									} else if (r == "fail") {
+										$.ligerDialog.error("删除失败");
+									} else if (r == "error") {
+										$.ligerDialog.error("删除失败");
+									}
+								}
+							});
+						}
+					});
+					break;
+					
 				}
 				return flag;
 			},
+			
 			/**
 			 * @description 初始化添加/修改表单
 			 * @param {Object}
@@ -193,6 +232,7 @@ LG.Model.AdManage = (function(){
 			 *
 			 */
 			showAddOrUpdateForm : function(p) {
+				addFlag = p.id ? false : true;
 				if (p.vid) {
 					$.ajax({
 						url : pvp.detailUrl,
@@ -217,19 +257,57 @@ LG.Model.AdManage = (function(){
 			 * @param {Object}
 			 *            r sim卡信息json串
 			 */
-			compileFormData : function(container, data) {
-				
-				
+			compileFormData : function(data) {
+				var beanName = 'spOperator.';
+				var d = {};
+				for ( var n in r) {
+					var key = beanName + n;
+					d[key] = r[n];
+				}
+
+				$(htmlObj.modifyContainer).find('input[type=text]').each(function() {
+					var key = $(this).attr('name');
+					if (key && d[key]) {
+						$(this).val(d[key]);
+						return;
+					}
+				}).end().find('select').each(function() {
+					var key = $(this).attr('name');
+					if (key && d[key]) {
+						$(this).val(d[key]);
+					}
+				}).end().find('input[type=hidden]').each(function() {
+					var key = $(this).attr('name');
+					if (key && d[key]) {
+						$(this).val(d[key]);
+					}
+				}).end();
 			},
-			
 			
 			/**
-			 * @description 初始化下拉框
+			 * @description 删除用户
+			 * @param {Object}
+			 *            opId 用户id
 			 */
-			initFormSelects : function() {
-
+			del : function(p) {
+				if (p.opId) {
+					$.ajax({
+						url : pvp.delUrl,
+						type : 'POST',
+						dataType : 'json',
+						data : {
+							'spOperator.opId' : p.id
+						},
+						error : function() {
+							// alert('Error loading json document');
+						},
+						success : function(r) {
+							if (p.onSuccess)
+								p.onSuccess(r);
+						}
+					});
+				}
 			},
-			
 			
 			/**
 			 * @description 初始化新增页面
@@ -237,6 +315,51 @@ LG.Model.AdManage = (function(){
 			initAddOrUpdateForm : function(c) {
 				//保存按钮
 				c.find('span[name=saveForm]').click(function() {
+					
+					var v = true;
+					var validate = $(c).validate({
+						debug : false,
+						rules : {},
+						success : function() {
+						}
+					});
+					if (!validate.form()) {
+						if (v) {
+							v = false;
+						}
+					}
+					if (!v) {
+						return false;
+					}
+					
+					var parms = {};
+					var d = $(c).serializeArray();
+					$.ajax({
+						url : addFlag ? pvp.addUrl : pvp.updateUrl,
+						type : 'post',
+						dataType : 'json',
+						data : parms,
+						error : function() {
+							// alert('Error loading json document');
+						},
+						success : function(r) {
+							var text = addFlag ? "添加" : "修改";
+							if (r == "success") {
+								$.ligerDialog.success(text + "成功", '提示', function(y) {
+									if (y) {
+										grid.loadData(true);
+										htmlObj.modifyContainer.addClass('hidden');
+										htmlObj.viewContainer.removeClass('hidden');
+										pvf.resetThis();
+									}
+								});
+							} else if (r == "fail") {
+								$.ligerDialog.error(text + "失败");
+							} else if (r == "error") {
+								$.ligerDialog.error(text + "失败");
+							}
+						}
+					});
 					
 				});
 				//取消按钮
@@ -246,6 +369,13 @@ LG.Model.AdManage = (function(){
 						htmlObj.adManageFormContent.addClass('none');
 					}
 				});
+			},
+			
+			/**
+			 * @description 初始化下拉框
+			 */
+			initFormSelects : function() {
+
 			},
 			
 			/**
@@ -272,18 +402,18 @@ LG.Model.AdManage = (function(){
             	p = $.extend({}, p || {}, options || {});
 
             	htmlObj = {
-    					pageLocation  : p.mainContainer.find('.pageLocation'), //位置
-    					adManageGridContent : p.mainContainer.find('.adManageContent:eq(0)'),//内容容器01
-    					searchForm  : p.mainContainer.find('form[name=adManageSearchForm]'), //查询表单
-    					adManageGrid  : p.mainContainer.find('.adManageGrid'), //表格
+    					pageLocation: p.mainContainer.find('.pageLocation'), //位置
+    					gridContent: p.mainContainer.find('.adManageContent:eq(0)'),//内容容器01
+    					searchForm: p.mainContainer.find('form[name=adManageSearchForm]'), //查询表单
+    					grid: p.mainContainer.find('.adManageGrid'), //表格
     					
-                        adManageFormContent : p.mainContainer.find('.adManageContent:eq(1)'),//内容容器02
+                        formContent: p.mainContainer.find('.adManageContent:eq(1)'),//内容容器02
                         modifyForm: p.mainContainer.find('form[name=adManage]')//新增或修改表单
     			};
             	this.resize(p.cHeight);
 				//pvf.initAuth(htmlObj.mainContainer);// TODO 初始化按钮权限
 				pvf.initGridAreaButton(htmlObj.searchForm);//查询按钮
-				pvf.initGrid(htmlObj.adManageGrid);//表格
+				pvf.initGrid(htmlObj.grid);//表格
 				
 				pvf.initAddOrUpdateForm(htmlObj.modifyForm);//新增页面
 				pvf.initFormSelects();//新增页面下拉框

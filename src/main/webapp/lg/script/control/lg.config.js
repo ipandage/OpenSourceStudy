@@ -30,11 +30,11 @@ LG.config = {
     /**
      * AD管理
      */
-    queryAdManageList: '/OpenSourceStudy/admin/ad/list.do',//AD管理列表
-    addAdManage: 'tbAreaManager/triggerPhotosSet.action',
-    detailAdManage: 'tbAreaManager/findSettingByVid.action',//查看详情
-
-
+	detailAdManage: '/OpenSourceStudy/admin/ad/list.do',//查看AD管理详情
+	addAdManage: '/OpenSourceStudy/admin/ad/list.do',//新增AD管理
+	delAdManage: '/OpenSourceStudy/admin/ad/list.do',//删除AD管理
+	updateAdManage: '/OpenSourceStudy/admin/ad/list.do',//更新AD管理
+    queryAdManageList: '/OpenSourceStudy/admin/ad/list.do',//分页列表查询
 
     test: ''
   },
