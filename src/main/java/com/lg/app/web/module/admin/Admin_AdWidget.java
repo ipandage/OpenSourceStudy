@@ -55,4 +55,12 @@ public class Admin_AdWidget {
         adPage = adService.listPage(new AdQueryCriterion(queryParams), adPage);
         return adPage;
     }
+    
+    @ResponseBody
+    @RequestMapping("/create/save")
+    public String create_save(Ad ad) {
+        ad = adService.save(ad);
+        return "success";
+    }
+    
 }
