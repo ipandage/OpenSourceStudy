@@ -139,10 +139,10 @@ LG.Model.AdManage = (function(){
 		                      var edit = "";
 		                      var remove = "";
 		                      //if ( $.inArray("FG_MEMU_MANAGER_USER_U", CTFO.cache.auth) ) {
-		                          edit ='<span class=" mr10 cF00"><font title="修改" class="hand update" id="'+ row.id +'">修改</font></span>';
+		                          edit ='<span class=" mr10 cF00"><font title="修改" class="hand" name="update" id="'+ row.id +'">修改</font></span>';
 		                      //}
 		                      //if ($.inArray("FG_MEMU_MANAGER_USER_D", CTFO.cache.auth) ) {
-		                          remove = '<span class=" mr10 cF00"><font title="删除" class="del" id="'+ row.id +'">删除</font></span>';
+		                          remove = '<span class=" mr10 cF00"><font title="删除" class="hand" name="del" id="'+ row.id +'">删除</font></span>';
 		                      //}
 		                      return  edit + remove ;
 		                }
@@ -179,7 +179,7 @@ LG.Model.AdManage = (function(){
 			
 			bindRowAction : function(eDom) {
 				var flag = true;
-				var actionType = $(eDom).attr('class');
+				var actionType = $(eDom).attr('name');
 				var id = $(eDom).attr('id');
 				switch (actionType) {
 				case 'update': // 修改AD信息
@@ -264,7 +264,7 @@ LG.Model.AdManage = (function(){
 					d[key] = r[n];
 				}
 
-				$(htmlObj.modifyContainer).find('input[type=text]').each(function() {
+				$(htmlObj.formContent).find('input[type=text]').each(function() {
 					var key = $(this).attr('name');
 					if (key && d[key]) {
 						$(this).val(d[key]);
@@ -344,8 +344,8 @@ LG.Model.AdManage = (function(){
 								$.ligerDialog.success(text + "成功", '提示', function(y) {
 									if (y) {
 										grid.loadData(true);
-										htmlObj.modifyContainer.addClass('hidden');
-										htmlObj.viewContainer.removeClass('hidden');
+										htmlObj.formContent.addClass('none');
+										htmlObj.gridContent.removeClass('none');
 										pvf.resetThis();
 									}
 								});
